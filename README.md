@@ -76,12 +76,29 @@ npm run deploy
     npm i @types/jest -D
     ```
 
-2. Check devDependencies for the 3 packages. 
+2. Check devDependencies for the 3 packages.
 3. Change "test" under scripts to "jest".  
 
    ```javascript
         "scripts": {
         "test": "jest \"src/**/*.test.tsx\""
+        }
+    ```
+
+4. Make a jest.config.js file and insert this
+
+     ```javascript
+        module.exports = {
+            "roots": [
+                "<rootDir>/src"
+            ],
+            "testMatch": [
+                "**/__tests__/**/*.+(ts|tsx|js)",
+                "**/?(*.)+(spec|test).+(ts|tsx|js)"
+            ],
+            "transform": {
+                "^.+\\.(ts|tsx)$": "ts-jest"
+            },
         }
     ```
 
