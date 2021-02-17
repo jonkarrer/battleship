@@ -1,6 +1,7 @@
 import React from 'react';
-import Home from './Home/Home'
-import Setup from './Setup/Setup'
+import Home from './Home/Home';
+import Setup from './Setup/Setup';
+import Game from './Game/Game';
 import './App.css';
 
 interface AppProps {}
@@ -11,6 +12,7 @@ function App({}: AppProps) {
     <div className="App">
       <Home />
       <Setup />
+      <Game />
     </div>
   );
 }
