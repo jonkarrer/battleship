@@ -1,23 +1,70 @@
-# New Project
+# BattleShip Game
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+## Summary
 
-## Available Scripts
+This web-app is created to improve my Testing skills in Jest. This READ.MD will be used to describe the process, and some of the unique lessons I learned. Along with Jest, I want to improve my skills with React, Typescript, and Snowpack. I have never used Jest with React, so this may be a dense project.
 
-### npm start
+## Create react with snopack development
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+1. install snowpack with typescript template
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+    ```bash
+    npx create-snowpack-app react-snowpack --template @snowpack/app-template-react-typescript
+    ```
 
-### npm run build
+## Install git-hub, gh-pages, webpack
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+1. Set git-hub repository normally
+2. Install gh-pages plugin
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.js` config file.
+    ```bash
+    npm install gh-pages
+    ```
+
+3. Install webpack plugin
+
+    ```bash
+    npm install --save-dev @snowpack/plugin-webpack
+    ```
+
+## Adjust package.json
+
+1. check dependencies in package.json. "gh-pages" should appear
+2. in global package.json add this line
+
+    ```javascript
+    "homepage": "http://jonkarrer.github.io/capstone-project" 
+    ```
+
+3. next add
+
+    ```javascript
+    "scripts": {
+          "predeploy": "npx snowpack build",
+          "deploy": "gh-pages -d build"
+    }
+    ```
+
+## Adjust snowpack config
+
+1. in snowpack config add
+
+    ```javascript
+        plugins: [
+            '@snowpack/plugin-webpack'
+        ],
+        buildOptions: [
+            baseUrl: '/capstone-project'.
+        ]
+    ```
+
+2. Double check for all all dependencies.
+
+## Deploy app to gh-pages
+
+```bash
+npm run deploy
+```
 
 ### npm test
 
