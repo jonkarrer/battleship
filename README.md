@@ -2,7 +2,7 @@
 
 ## Summary
 
-This web-app is created to improve my Testing skills in Jest. This READ.MD will be used to describe the process, and some of the unique lessons I learned. Along with Jest, I want to improve my skills with React, Typescript, and Snowpack. I have never used Jest with React, so this may be a dense project.
+I am aware that React + Typescript is overkill for this project. I am using them to practice for large projects. This web-app is created to improve my Testing skills in Jest. This READ.MD will be used to describe the process, and some of the unique lessons I learned. Along with Jest, I want to improve my skills with React, Typescript, and Snowpack. I have never used Jest with React, so this may be a dense project.
 
 ## Create react with snopack development
 
@@ -102,7 +102,6 @@ npm run deploy
         }
     ```
 
-### npm test
+## Bug Log
 
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+1. Clean so far
