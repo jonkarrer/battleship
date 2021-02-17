@@ -65,6 +65,7 @@ This web-app is created to improve my Testing skills in Jest. This READ.MD will 
 ```bash
 npm run deploy
 ```
+
 ## Set-up Jest with Typescript
 
 1. Install jest, ts-jest, and @types/jest
@@ -76,7 +77,7 @@ npm run deploy
     ```
 
 2. Check devDependencies for the 3 packages. 
-3. Change test under scripts to jest.  
+3. Change "test" under scripts to "jest".  
 
    ```javascript
         "scripts": {
