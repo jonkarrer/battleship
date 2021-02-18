@@ -2,19 +2,32 @@ import React from 'react';
 import Home from './Home/Home';
 import Setup from './Setup/Setup';
 import Game from './Game/Game';
-import './App.css';
+import {currentGameLevel} from './GameProvider';
+
 
 interface AppProps {}
 
 function App({}: AppProps) {
-
-  return (
-    <div className="App">
-      <Home />
-      <Setup />
-      <Game />
-    </div>
-  );
+  if(currentGameLevel() === 0) {
+    return (
+      <div>
+        <Home />
+      </div>
+    )
+  } else if (currentGameLevel() === 1) {
+    return (
+      <div>
+        <Setup />
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <Game />
+      </div>
+    );
+  }
+  
 }
 
 export default App;

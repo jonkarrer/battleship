@@ -1,11 +1,12 @@
 import React from 'react'
+import {changeGameLevel} from '../GameProvider';
 import './Home.css'
 
  const Home: React.FC = () => {
   return (
     <div className="Home">
       <section className="home-menu-grid">
-        <div className="new-game-cell"><h2>New Game</h2></div>
+        <div className="new-game-cell" onClick={changeGameLevel()}><h2>New Game</h2></div>
         <div className="rules-cell"><h2>Rules</h2></div>
         <div className="battleship-cell"><h1>BATTLESHIP</h1></div>
       </section>
