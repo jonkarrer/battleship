@@ -38,8 +38,8 @@
 }
 .boat-1-homepage {
   position: absolute;
-  left: 0;
-  bottom: 40px;
+  left: 20px;
+  bottom: 30px;
 }
 .boat-2-homepage {
   position: absolute;
@@ -52,6 +52,6 @@
 }
 .boat-3-homepage {
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 10%;
 }
