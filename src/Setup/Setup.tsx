@@ -1,4 +1,5 @@
 import React from 'react'
+import {changeGameLevel} from '../GameProvider';
 import './Setup.css'
 
  const Setup: React.FC = () => {
@@ -13,7 +14,7 @@ import './Setup.css'
         <div className="options-cell">
           <div>Reset</div>
           <div>Randomize Ships</div>
-          <div>START!</div>
+          <div onClick={changeGameLevel()}>START!</div>
         </div>
       </section>
       <div className="boat-1-setup"><img src="./assets/4.jpg" alt="boat"/></div>

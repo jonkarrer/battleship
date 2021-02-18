@@ -1,7 +1,7 @@
 .Home {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -12,12 +12,12 @@
   height: 80vh;
 }
 .new-game-cell {
-  font-size: 45px;
+  font-size: 40px;
   text-align: center;
   z-index: 1;
 }
 .rules-cell {
-  font-size: 45px;
+  font-size: 40px;
   text-align: center;
   z-index: 1;
 }
@@ -26,7 +26,6 @@
 }
 .battleship-cell {
   font-size: 75px;
-  text-align: center;
   z-index: 1;
 }
 .source-code-link a {
@@ -40,6 +39,7 @@
 .boat-1-homepage {
   position: absolute;
   left: 0;
+  bottom: 40px;
 }
 .boat-2-homepage {
   position: absolute;
