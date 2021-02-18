@@ -7,11 +7,49 @@
   width: 100vw;
 }
 .game-grid {
-  
+  display: grid;
+  grid-template-rows: auto auto auto;
+  height: 100%;
+  width: 90%;
+}
+.boat-count-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25px;
+}
+.game-board-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user-game-board {
+  border: red solid thin;
+  height: 500px;
+  width: 500px;
+  z-index: 1;
+}
+.turn-tracker {
+  font-size: 25px;
+}
+.comp-game-board {
+  border: red solid thin;
+  height: 500px;
+  width: 500px;
+  z-index: 1;
+}
+.fire-cannons-cell {
+  font-size: 75px;
+  text-align: center;
+  z-index: 1;
 }
 .boat-1-game {
-  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
 }
 .boat-2-game {
-  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
 }
