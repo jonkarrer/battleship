@@ -1,0 +1,57 @@
+.Home {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.home-menu-grid {
+  display: grid;
+  grid-template-rows: 25% 25% auto;
+  height: 80vh;
+}
+.new-game-cell {
+  font-size: 45px;
+  text-align: center;
+  z-index: 1;
+}
+.rules-cell {
+  font-size: 45px;
+  text-align: center;
+  z-index: 1;
+}
+.new-game-cell, .rules-cell:hover {
+  cursor: pointer;
+}
+.battleship-cell {
+  font-size: 75px;
+  text-align: center;
+  z-index: 1;
+}
+.source-code-link a {
+  position: absolute;
+  text-decoration: none;
+  top: 0;
+  right: 20px;
+  font-size: 30px;
+  color: grey;
+}
+.boat-1-homepage {
+  position: absolute;
+  left: 0;
+}
+.boat-2-homepage {
+  position: absolute;
+  left: 30%;
+  top: 0;
+}
+.boat-2-homepage img {
+  height: 200px;
+  width: 200px;
+}
+.boat-3-homepage {
+  position: absolute;
+  right: 0;
+  top: 10%;
+}

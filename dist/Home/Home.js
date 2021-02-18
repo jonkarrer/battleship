@@ -1,4 +1,5 @@
 import React from "../../_snowpack/pkg/react.js";
+import "./Home.css.proxy.js";
 const Home = () => {
   return /* @__PURE__ */ React.createElement("div", {
     className: "Home"
@@ -10,7 +11,7 @@ const Home = () => {
     className: "rules-cell"
   }, /* @__PURE__ */ React.createElement("h2", null, "Rules")), /* @__PURE__ */ React.createElement("div", {
     className: "battleship-cell"
-  }, /* @__PURE__ */ React.createElement("h1", null, "BattleShip"))), /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React.createElement("h1", null, "BATTLESHIP"))), /* @__PURE__ */ React.createElement("div", {
     className: "boat-1-homepage"
   }, /* @__PURE__ */ React.createElement("img", {
     src: "./assets/1.jpg",
