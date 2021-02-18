@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './Game.css';
 const Game: React.FC = () => {
   return (
     <div className="Game">

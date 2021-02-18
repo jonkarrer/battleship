@@ -1,3 +1,48 @@
 .Setup {
-  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.setup-grid {
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 100%;
+  width: 90vw;
+}
+.game-cell-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.game-board {
+  border: red solid thin;
+  height: 500px;
+  width: 500px;
+  z-index: 1;
+}
+.boat-selection {
+  border: red solid thin;
+  height: 500px;
+  width: 500px;
+  z-index: 1;
+}
+.placeships-cell {
+  font-size: 75px;
+  text-align: center;
+  z-index: 1;
+}
+.boat-1-setup {
+  position: absolute;
+}
+.boat-2-setup {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+.boat-2-setup img {
+  height: 250px;
+  width: 250px;
 }

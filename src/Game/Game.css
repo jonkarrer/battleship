@@ -1,0 +1,17 @@
+.Game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.game-grid {
+  
+}
+.boat-1-game {
+  display: none;
+}
+.boat-2-game {
+  display: none;
+}
