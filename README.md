@@ -102,6 +102,44 @@ npm run deploy
         }
     ```
 
-## Bug Log
+## Create page swaps
 
-1. Clean so far
+1. Created a Context Api in the GameProvider.tsx file. Here is the snapshot
+
+    ```javascript
+        import React, {useContext, useState} from 'react'
+
+        const GameContext = React.createContext(0); //Typescript forces an inital value
+        const ChangeGameContext = React.createContext(()=>{})
+
+        export const currentGameLevel = () => useContext(GameContext);
+        export const changeGameLevel = () => useContext(ChangeGameContext);
+
+        interface GameProps {
+        children: any;
+        }
+
+        export const GameProvider = ({children}:GameProps) => {
+            const [gameLevel, setGameLevel] = useState(0);
+            const changeLevel = () => setGameLevel(gameLevel + 1);
+            return (
+                <div>
+                    <GameContext.Provider value={gameLevel}>
+                        <ChangeGameContext.Provider value={changeLevel}>
+                            {children}
+                        </ChangeGameContext.Provider>
+                    </GameContext.Provider>
+                </div>
+            )
+        }
+    ```
+
+2. I wrapped the index.tsx in the GameProvider element to give all children access to the values.
+
+3. Each page is assigned a number. Home = 0, Setup = 1, Game = 2. These numbers are in the useState() hook.
+
+4. useContext() captures the present values from the GameProvider, gameLevel and changeLevel and passes them to the children.
+
+5. In App.tsx I use if/else statement to render the component I want. The default page is Home/0.
+
+6. I use click functions in the children to call changeLevel. This will update the state and render the new page.
