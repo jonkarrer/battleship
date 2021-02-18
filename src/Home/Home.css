@@ -25,15 +25,22 @@
   text-align: center;
   z-index: 1;
 }
+.new-game-cell, .rules-cell:hover {
+  cursor: pointer;
+}
 .battleship-cell {
   color: red;
   font-size: 75px;
   text-align: center;
   z-index: 1;
 }
-.source-code-link {
+.source-code-link a {
   position: absolute;
-  display: none;
+  text-decoration: none;
+  top: 0;
+  right: 20px;
+  font-size: 30px;
+  color: grey;
 }
 .boat-1-homepage {
   position: absolute;
