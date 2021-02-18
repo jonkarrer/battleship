@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
+.Home {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Merriweather', serif;
+}
+.home-menu-grid {
+  display: grid;
+  grid-template-rows: 25% 25% auto;
+  height: 80vh;
+}
+.new-game-cell {
+  color: red;
+  font-size: 45px;
+  text-align: center;
+  z-index: 1;
+}
+.rules-cell {
+  color: red;
+  font-size: 45px;
+  text-align: center;
+  z-index: 1;
+}
+.battleship-cell {
+  color: red;
+  font-size: 75px;
+  text-align: center;
+  z-index: 1;
+}
+.source-code-link {
+  position: absolute;
+  display: none;
+}
+.boat-1-homepage {
+  position: absolute;
+  left: 0;
+}
+.boat-2-homepage {
+  position: absolute;
+  left: 30%;
+  top: 0;
+}
+.boat-2-homepage img {
+  height: 200px;
+  width: 200px;
+}
+.boat-3-homepage {
+  position: absolute;
+  right: 0;
+  top: 10%;
+}
