@@ -22,6 +22,15 @@
   height: 500px;
   width: 500px;
   z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(10,auto);
+}
+.game-board div {
+  border: red solid thin;
+  background-color: white;
+}
+.game-board div:hover {
+  background: hsla(20, 100%, 50%, .5);
 }
 .boat-selection {
   border: red solid thin;

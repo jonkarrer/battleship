@@ -143,3 +143,5 @@ npm run deploy
 5. In App.tsx I use if/else statement to render the component I want. The default page is Home/0.
 
 6. I use click functions in the children to call changeLevel. This will update the state and render the new page.
+
+## Making a grid

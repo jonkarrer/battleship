@@ -2,12 +2,26 @@ import React from 'react'
 import {changeGameLevel} from '../GameProvider';
 import './Setup.css'
 
+const gameBoardArr: Array<number> = 
+[
+0,0,0,0,0,0,0,0,0,0, //a[0-0]
+0,0,0,0,0,0,0,0,0,0, //b[0-9]
+0,0,0,0,0,0,0,0,0,0, //c[0-9]
+0,0,0,0,0,0,0,0,0,0, //d[0-9]
+0,0,0,0,0,0,0,0,0,0, //e[0-9]
+0,0,0,0,0,0,0,0,0,0, //f[0-9]
+0,0,0,0,0,0,0,0,0,0, //g[0-9]
+0,0,0,0,0,0,0,0,0,0, //h[0-9]
+0,0,0,0,0,0,0,0,0,0  //I[0-9]
+]
  const Setup: React.FC = () => {
+   
+  
   return (
     <div className="Setup">
       <section className="setup">
         <div className="game-cell">
-          <div className="game-board">Big Board Sqare</div>
+          <div className="game-board">{gameBoardArr.map(() => (<div>0</div>))}</div>
           <div className="boat-selection">Lots of ships</div>
         </div>
         <div className="placeships-cell">Place Ships</div>
