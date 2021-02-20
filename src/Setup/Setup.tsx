@@ -21,7 +21,7 @@ const gameBoardArr: Array<number> =
     <div className="Setup">
       <section className="setup">
         <div className="game-cell">
-          <div className="game-board">{gameBoardArr.map(() => (<div>0</div>))}</div>
+          <div className="game-board">{gameBoardArr.map((item, index) => (<div key={index}>{index}</div>))}</div>
           <div className="boat-selection">Lots of ships</div>
         </div>
         <div className="placeships-cell">Place Ships</div>
