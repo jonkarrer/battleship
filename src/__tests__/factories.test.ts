@@ -47,11 +47,21 @@ describe('Test GameBoard Methods',() => {
     expect(playerBoard.grid.indexOf(11)).toBe(11);
     expect(playerBoard.grid.indexOf(12)).toBe(12);
   });
-  it('Cross check the attack with the ship coordinates', () => {
+  it('Placed the boat in the shipYard array', () => {
+    playerBoard.placeShip(3, [20,21,22]);
+    expect(playerBoard.shipYard).toStrictEqual([new Ship(3, [20,21,22])])
+  });
+  it('Examines attack and declares a Miss! and record coordinates', () => {
     playerBoard.placeShip(4,[30,31,32,33]);
-    expect(playerBoard.examineAttack(30)).toBe(true);
-    expect(playerBoard.examineAttack(31)).toBe(true);
-    expect(playerBoard.examineAttack(32)).toBe(true);
-    expect(playerBoard.examineAttack(33)).toBe(true);
+    playerBoard.recieveAttack(25);
+    expect(playerBoard.missedShotsTracker).toStrictEqual([25]);
+  });
+  it('Examines attack and declares HIT! and tells the Ship object', () => {
+    playerBoard.placeShip(4,[30,31,32,33]);
+    playerBoard.placeShip(3,[20,21,22]);
+    playerBoard.recieveAttack(31);
+    playerBoard.recieveAttack(20);
+    expect(playerBoard.shipYard[0].hitTracker).toStrictEqual([31]);
+    expect(playerBoard.shipYard[1].hitTracker).toStrictEqual([20]);
   });
 })

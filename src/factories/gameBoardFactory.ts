@@ -2,29 +2,32 @@ import Ship from './shipFactory';
 
 class GameBoard {
   public grid:Array<number>;
-  private shipYard:Array<any>;
-  private missedShotsTracker: Array<number>;
+  public shipYard:Array<any>;
+  public missedShotsTracker: Array<number>;
   constructor() {
-   this.grid = [];
-   this.missedShotsTracker = [];
-   this.shipYard = []; //experimental
-    
+    this.grid = [];
+    this.missedShotsTracker = [];
+    this.shipYard = [];
   }
-  buildGrid() {
+  buildGrid() {//Want a large array to represent the GameBoard
     for (let i=0; i < 90; i++) {
       this.grid.push(-1);
     };
   }
-  placeShip(lengthOfShip:number, coordinates:Array<number>) {
-    //Make a boat at this spot with these coordinates
-    const placedShip = new Ship(lengthOfShip, coordinates);
-    this.shipYard.push(placedShip);//experimental
-    //Replace the values in grid with the ship coordinates
-    this.grid.splice(coordinates[0],coordinates.length, ...coordinates);
+  placeShip(lengthOfShip:number, coordinatesArr:Array<number>) {
+    let placedShip = new Ship(lengthOfShip, coordinatesArr);
+    this.shipYard.push(placedShip);
+    //Replace the -1 values in grid with the values in ship coordinatesArr
+    this.grid.splice(coordinatesArr[0],coordinatesArr.length, ...coordinatesArr);
   }
-  examineAttack(attackPosition:number) {
-    if(this.grid.indexOf(attackPosition) > -1) {
-      return true;
+  
+  recieveAttack(attackPosition:number) {
+    if(this.grid.indexOf(attackPosition) > -1) { //We know a ship is here because the index value is higher than -1
+      for(let ship of this.shipYard) {//Loop through shipyard
+        for(let coordinate of ship.coordinates) {//Loop through this ships coordinates property
+          if (coordinate === attackPosition) {
+            ship.hasBeenHit(attackPosition);
+          }}};
     } else {
       this.missedShotsTracker.push(attackPosition);
     }

@@ -1,7 +1,8 @@
 class Ship {
   public hitTracker:Array<number>;
-  constructor( private length:number, private coordinates:Array<number>) {
+  constructor( private length:number, public coordinates:Array<number>) {
     this.hitTracker = [];
+    this.coordinates = coordinates;
   }
   hasBeenHit(atThisPosition: number) {
     this.hitTracker.push(atThisPosition);
