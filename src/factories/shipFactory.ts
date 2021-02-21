@@ -1,16 +1,16 @@
 class Ship {
   public hitTracker:Array<number>;
-  constructor(private name: string, private length:number, private position:number) {
+  constructor(private name: string, private length:number, private whereOnBoard:Array<number>) {
     this.hitTracker = [];
   }
-  isHit(index: number) {
-    this.hitTracker.push(index);
+  hasBeenHit(atThisPosition: number) {
+    this.hitTracker.push(atThisPosition);
   };
-  isSunk():string {
+  didHitSink():boolean {
     if (this.length === this.hitTracker.length) {
-      return "Sunk";
+      return true;
     } else {
-      return `${this.length - this.hitTracker.length} hits left`;
+      return false;
     };
   };
 }
