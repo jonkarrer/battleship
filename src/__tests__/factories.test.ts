@@ -36,8 +36,16 @@ describe('Test GameBoard Methods',() => {
   beforeEach(() => {
     playerBoard = new GameBoard();
   });
-  it('Created an an array with 90 indexes', () => {
+  it('Created an an array with 90 indexes of -1 value', () => {
     playerBoard.buildGrid();
     expect(playerBoard.grid.length).toBe(90);
-  })
+    expect(playerBoard.grid.indexOf(30)).toBe(-1);
+  });
+  it('Spliced the array and added the values to the index', () => {
+    playerBoard.buildGrid();
+    playerBoard.placeShip([10,11,12]);
+    expect(playerBoard.grid.indexOf(10)).toBe(10);
+    expect(playerBoard.grid.indexOf(11)).toBe(11);
+    expect(playerBoard.grid.indexOf(12)).toBe(12);
+  });
 })
