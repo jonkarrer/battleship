@@ -1,6 +1,7 @@
 import Ship from '../factories/shipFactory';
+import GameBoard from '../factories/gameBoardFactory';
 
-describe ('shipFactory Functions', () => {
+describe ('Test Ship Methods', () => {
   let carrier:any;
   let destroyer:any;
   beforeEach(() => {
@@ -27,5 +28,16 @@ describe ('shipFactory Functions', () => {
     carrier.hasBeenHit(3);
     carrier.hasBeenHit(3);
     expect(carrier.didHitSink()).toBe(false)
+  });
+});
+
+describe('Test GameBoard Methods',() => {
+  let playerBoard:any;
+  beforeEach(() => {
+    playerBoard = new GameBoard();
+  });
+  it('Created an an array with 90 indexes', () => {
+    playerBoard.buildGrid();
+    expect(playerBoard.grid.length).toBe(90);
   })
 })
