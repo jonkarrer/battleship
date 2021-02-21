@@ -1,6 +1,6 @@
 class Ship {
   public hitTracker:Array<number>;
-  constructor(private name: string, private length:number, private whereOnBoard:Array<number>) {
+  constructor( private length:number, private coordinates:Array<number>) {
     this.hitTracker = [];
   }
   hasBeenHit(atThisPosition: number) {
