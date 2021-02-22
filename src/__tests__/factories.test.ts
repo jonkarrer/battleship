@@ -85,9 +85,15 @@ describe('Test Player Methods', () => {
     humanPlayer = new Player();
     humanPlayer.initHumanPlayer();
   });
-  it('Creates an array with coordinates starting at argument 1', () => {
+  it('Checks that the ship is placed horizontal on human gameBoard', () => {
     humanPlayer.placeOneShip(13, 4);
-    expect(humanPlayer.gameBoard.shipYard).toStrictEqual([new Ship(4, [13,14,15,16])]);
-    expect(humanPlayer.gameBoard.grid.indexOf(13)).toBe(13);
-  })
+    expect(humanPlayer.humanBoard.shipYard).toStrictEqual([new Ship(4, [13,14,15,16])]);
+    expect(humanPlayer.humanBoard.grid.indexOf(13)).toBe(13);
+  });
+  //Need to test veritcal placement on human
+  //Need to test horizontal placement on computer
+  //Need to test vertical placement on computer
+  //Need to send and test attack to computer board
+  //Need to send and test attack to human board
+  //Need to build game loop
 })
