@@ -3,28 +3,29 @@ import GameBoard from './gameBoardFactory';
 
 class Computer {
   public computerBoard:any;
-  constructor() {
+  constructor(public humanPlayer:any) {
     this.computerBoard = new GameBoard();
+    this.humanPlayer = humanPlayer;
   }
   initComputerPlayer() {
     this.computerBoard.buildGrid();
   }
-  placeShipHorizontal(someDomSelection:number, whichBoatLength:number) {
+  placeShipHorizontal(someRandomSelection:number, whichBoatLength:number) {
     let coordinatesArr:Array<number>=[];
     for (let i=0; i < whichBoatLength; i++) {
-      coordinatesArr.push(someDomSelection + i);
+      coordinatesArr.push(someRandomSelection + i);
     }
-    this.computerBoard.placeShip(whichBoatLength,coordinatesArr);
+    this.computerBoard.placeHorizontalShip(whichBoatLength,coordinatesArr);
   }
-  placeShipVertical(someDomSelection:number, whichBoatLength:number) {
+  placeShipVertical(someRandomSelection:number, whichBoatLength:number) {
     let coordinatesArr:Array<number>=[];
-    for (let i=0; i < whichBoatLength; i += 9) {
-      coordinatesArr.push(someDomSelection + i);
+    for (let i=0; i < (whichBoatLength * 10); i += 10) {
+      coordinatesArr.push(someRandomSelection + i);
     }
-    this.computerBoard.placeShip(whichBoatLength,coordinatesArr);
+    this.computerBoard.placeVerticalShip(whichBoatLength,coordinatesArr);
   }
-  sendAttackCoordinate() {
-    
+  sendAttackCoordinate(someRandomSelection:number) {
+    this.humanPlayer.humanBoard.receiveAttack(someRandomSelection);
   }
 }
 export default Computer;
