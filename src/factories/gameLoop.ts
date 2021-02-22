@@ -27,3 +27,5 @@ humanPlayer.placeShipVertical(25, 3); //25,35,45
 humanPlayer.placeShipHorizontal(12, 3);//12,13,14
 humanPlayer.placeShipVertical(60, 2);//60, 70
 
+
+
