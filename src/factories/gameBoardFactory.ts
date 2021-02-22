@@ -20,16 +20,29 @@ class GameBoard {
     //Replace the -1 values in grid with the values in ship coordinatesArr
     this.grid.splice(coordinatesArr[0],coordinatesArr.length, ...coordinatesArr);
   }
-  
   recieveAttack(attackPosition:number) {
-    if(this.grid.indexOf(attackPosition) > -1) { //We know a ship is here because the index value is higher than -1
-      for(let ship of this.shipYard) {//Loop through shipyard
-        for(let coordinate of ship.coordinates) {//Loop through this ships coordinates property
+    //We know a ship is here because the index value is higher than -1.
+    if(this.grid.indexOf(attackPosition) > -1) {
+      for(let ship of this.shipYard) {//Loop through ships and then each ships coordinates prop.
+        for(let coordinate of ship.coordinates) {
           if (coordinate === attackPosition) {
-            ship.hasBeenHit(attackPosition);
+            ship.hasBeenHit(attackPosition);//Tell the ship it has been hit
           }}};
     } else {
       this.missedShotsTracker.push(attackPosition);
+    }
+  }
+  countSunkShips() {
+    let sunkShipTotal:number = 0;
+    for(let ship of this.shipYard) {
+      if (ship.hasSank) {
+        sunkShipTotal += 1 
+      } else {
+        return false;
+      }
+    }
+    if (sunkShipTotal === this.shipYard.length) {
+      return "end game function"
     }
   }
 }
