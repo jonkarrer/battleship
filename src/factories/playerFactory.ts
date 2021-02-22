@@ -3,15 +3,11 @@ import Computer from './computerFactory';
 
 class Player {
   public humanBoard:any;
-  constructor(public computerOpponent:any) {
+  constructor() {
     this.humanBoard = new GameBoard();
-    this.computerOpponent = computerOpponent;
   }
   initHumanPlayer() {
     this.humanBoard.buildGrid();
-  }
-  initComputerPlayer() {
-    this.computerOpponent.initComputerPlayer();
   }
   placeShipHorizontal(someDomSelection:number, whichBoatLength:number) {
     let coordinatesArr:Array<number>=[];
@@ -26,9 +22,6 @@ class Player {
       coordinatesArr.push(someDomSelection + i);
     }
     this.humanBoard.placeVerticalShip(whichBoatLength,coordinatesArr);
-  }
-  sendAttackCoordinate(someDomSelection:number) {
-    this.computerOpponent.computerBoard.receiveAttack(someDomSelection);
   }
 }
 export default Player;

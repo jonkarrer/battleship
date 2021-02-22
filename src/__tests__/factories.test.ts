@@ -88,10 +88,8 @@ describe('Test GameBoard Methods',() => {
 
 describe('Test Player build Methods', () => {
   let humanPlayer:any;
-  let computerOpponent:any;
   beforeEach(() => {
-    computerOpponent = new Computer(humanPlayer);
-    humanPlayer = new Player(computerOpponent);
+    humanPlayer = new Player();
     humanPlayer.initHumanPlayer();
   });
   it('Checks that the ship is placed horizontal on human gameBoard', () => {
@@ -104,11 +102,12 @@ describe('Test Player build Methods', () => {
     expect(humanPlayer.humanBoard.shipYard).toStrictEqual([new Ship(3, [0,10,20])]);
     expect(humanPlayer.humanBoard.grid.indexOf(10)).toBe(10);
   });
-})
+});
+
 describe('Test Computer build Methods', () => {
   let computerPlayer:any;
   beforeEach(() => {
-    computerPlayer = new Computer(undefined);
+    computerPlayer = new Computer();
     computerPlayer.initComputerPlayer();
   });
   it('Checks that the ship is placed horizontal on human gameBoard', () => {
@@ -123,58 +122,4 @@ describe('Test Computer build Methods', () => {
   });
 });
 
-describe('Test Player attack Method', () => {
-  let humanPlayer:any;
-  let computerOpponent:any;
-  beforeEach(() => {
-    computerOpponent = new Computer(humanPlayer);
-    humanPlayer = new Player(computerOpponent);
-    humanPlayer.initHumanPlayer();
-    humanPlayer.initComputerPlayer();
-  });
-  it('Test if computerOpponent places ship properly inside player class', () => {
-    humanPlayer.computerOpponent.placeShipHorizontal(12, 3);
-    humanPlayer.computerOpponent.placeShipVertical(30, 4);
-    expect(humanPlayer.computerOpponent.computerBoard.shipYard).toStrictEqual([new Ship(3, [12,13,14]), new Ship(4,[30,40,50,60])]);
-    expect(humanPlayer.computerOpponent.computerBoard.grid.indexOf(13)).toBe(13);
-    expect(humanPlayer.computerOpponent.computerBoard.grid.indexOf(14)).toBe(14);
-    expect(humanPlayer.computerOpponent.computerBoard.grid.indexOf(40)).toBe(40);
-    expect(humanPlayer.computerOpponent.computerBoard.grid.indexOf(50)).toBe(50);
-  });
-  it('Test if computer recieves attack', () => {
-    humanPlayer.computerOpponent.placeShipHorizontal(12, 3);
-    humanPlayer.computerOpponent.placeShipVertical(30, 4);
-    humanPlayer.sendAttackCoordinate(12);
-    humanPlayer.sendAttackCoordinate(40);
-    //Go to computer shipyard and see if the targeted boat's hitTracker matches.
-    expect(humanPlayer.computerOpponent.computerBoard.shipYard[0].hitTracker).toStrictEqual([12]);
-    expect(humanPlayer.computerOpponent.computerBoard.shipYard[1].hitTracker).toStrictEqual([40]);
-  });
-});
-
-describe('Test Computer attack Method', () => {
-  let humanPlayer:any;
-  let computerOpponent:any;
-  beforeEach(() => {
-    humanPlayer = new Player(computerOpponent);
-    humanPlayer.initHumanPlayer();
-    humanPlayer.placeShipHorizontal(12, 3);
-    humanPlayer.placeShipVertical(30, 4)
-    computerOpponent = new Computer(humanPlayer);
-  });
-  it('Test if humanPlayer placed ship properly before being passed into computerOpponent', () => {
-    expect(computerOpponent.humanPlayer.humanBoard.shipYard).toStrictEqual([new Ship(3, [12,13,14]), new Ship(4,[30,40,50,60])]);
-    expect(computerOpponent.humanPlayer.humanBoard.grid.indexOf(13)).toBe(13);
-    expect(computerOpponent.humanPlayer.humanBoard.grid.indexOf(14)).toBe(14);
-    expect(computerOpponent.humanPlayer.humanBoard.grid.indexOf(40)).toBe(40);
-    expect(computerOpponent.humanPlayer.humanBoard.grid.indexOf(50)).toBe(50);
-  });
-  it('Test if computer recieves attack', () => {
-    computerOpponent.sendAttackCoordinate(12);
-    computerOpponent.sendAttackCoordinate(40);
-    //Go to computer shipyard and see if the targeted boat's hitTracker matches.
-    expect(computerOpponent.humanPlayer.humanBoard.shipYard[0].hitTracker).toStrictEqual([12]);
-    expect(computerOpponent.humanPlayer.humanBoard.shipYard[1].hitTracker).toStrictEqual([40]);
-  });
-});
 

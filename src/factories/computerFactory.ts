@@ -3,9 +3,8 @@ import GameBoard from './gameBoardFactory';
 
 class Computer {
   public computerBoard:any;
-  constructor(public humanPlayer:any) {
+  constructor() {
     this.computerBoard = new GameBoard();
-    this.humanPlayer = humanPlayer;
   }
   initComputerPlayer() {
     this.computerBoard.buildGrid();
@@ -23,9 +22,6 @@ class Computer {
       coordinatesArr.push(someRandomSelection + i);
     }
     this.computerBoard.placeVerticalShip(whichBoatLength,coordinatesArr);
-  }
-  sendAttackCoordinate(someRandomSelection:number) {
-    this.humanPlayer.humanBoard.receiveAttack(someRandomSelection);
   }
 }
 export default Computer;
