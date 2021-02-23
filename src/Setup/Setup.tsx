@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {changeGameLevel} from '../GameProvider';
 import './Setup.css'
 
@@ -15,7 +15,9 @@ const gameBoardArr: Array<number> =
 0,0,0,0,0,0,0,0,0,0  //I[0-9]
 ]
  const Setup: React.FC = () => {
-   
+   useEffect(() => {
+
+   })
   
   return (
     <div className="Setup">
