@@ -12,7 +12,7 @@ I am aware that React + Typescript is overkill for this project. I am using them
     npx create-snowpack-app react-snowpack --template @snowpack/app-template-react-typescript
     ```
 
-## Install git-hub, gh-pages, webpack
+### Install git-hub, gh-pages, webpack
 
 1. Set git-hub repository normally
 2. Install gh-pages plugin
@@ -27,7 +27,7 @@ I am aware that React + Typescript is overkill for this project. I am using them
     npm install --save-dev @snowpack/plugin-webpack
     ```
 
-## Adjust package.json
+### Adjust package.json
 
 1. check dependencies in package.json. "gh-pages" should appear
 2. in global package.json add this line
@@ -45,7 +45,7 @@ I am aware that React + Typescript is overkill for this project. I am using them
     }
     ```
 
-## Adjust snowpack config
+### Adjust snowpack config
 
 1. in snowpack config add
 
@@ -60,13 +60,13 @@ I am aware that React + Typescript is overkill for this project. I am using them
 
 2. Double check for all all dependencies.
 
-## Deploy app to gh-pages
+### Deploy app to gh-pages
 
 ```bash
 npm run deploy
 ```
 
-## Set-up Jest with Typescript
+### Set-up Jest with Typescript
 
 1. Install jest, ts-jest, and @types/jest
 
@@ -102,7 +102,9 @@ npm run deploy
         }
     ```
 
-## Create page swaps
+## Creation Notes
+
+### Create page swaps
 
 1. Created a Context Api in the GameProvider.tsx file. Here is the snapshot
 
@@ -144,4 +146,50 @@ npm run deploy
 
 6. I use click functions in the children to call changeLevel. This will update the state and render the new page.
 
-## Making a grid
+## Creating a Context API for Player.prototype for use in the SetUp component
+
+1. In GameProvider.tsx we will initialize the context
+
+    ```javascript
+        const HumanPlayerContext = React.createContext(Player.prototype); 
+        export const humanPlayer = () => useContext(HumanPlayerContext);
+    ```
+
+2. Initialized the new Player.prototype to pass the the .Provider value={}
+
+    ```javascript
+        const playerOne = new Player();
+    ```
+
+3. Then I wrapped the children prop with the HumanPlayerContext.Provider.
+
+    ```javascript
+        return (
+            <div>
+                <GameContext.Provider value={gameLevel}>
+                    <ChangeGameContext.Provider value={changeLevel}>
+                        <HumanPlayerContext.Provider value={playerOne}>
+                            {children}
+                        </HumanPlayerContext.Provider>
+                    </ChangeGameContext.Provider>
+                </GameContext.Provider>
+            </div>
+        )
+    ```
+
+4. Pull the context into the SetUp component and apply it.
+
+    ```javascript
+        import {changeGameLevel, humanPlayer} from '../GameProvider';
+        const Setup: React.FC = () => {
+            const readyPlayerOne:any = humanPlayer();
+        for (let i=0; i < 90; i++) {
+            gameBoardArr.push(
+                <div key={i} onClick={() => {
+                    readyPlayerOne.placeShip(shipPlacementAxis, i, 4);
+                    }
+                }>{i}</div>);
+        }
+    ```
+
+5. !!! Super Important 'Gotcha' with useContext() hook. You HAVE to assign the context, humanPlayer(), to a variable inside the body of the funtion BEFORE using it. If not, a hook error will occur.
