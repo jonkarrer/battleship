@@ -6,7 +6,6 @@ import {currentGameLevel} from './GameProvider';
 
 
 interface AppProps {}
-
 function App({}: AppProps) {
   if(currentGameLevel() === 0) {
     return (

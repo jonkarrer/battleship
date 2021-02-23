@@ -1,29 +1,17 @@
 import React, {useEffect} from 'react'
-import {changeGameLevel} from '../GameProvider';
+import {changeGameLevel, humanPlayer} from '../GameProvider';
 import './Setup.css'
 
-const gameBoardArr: Array<number> = 
-[
-0,0,0,0,0,0,0,0,0,0, //a[0-0]
-0,0,0,0,0,0,0,0,0,0, //b[0-9]
-0,0,0,0,0,0,0,0,0,0, //c[0-9]
-0,0,0,0,0,0,0,0,0,0, //d[0-9]
-0,0,0,0,0,0,0,0,0,0, //e[0-9]
-0,0,0,0,0,0,0,0,0,0, //f[0-9]
-0,0,0,0,0,0,0,0,0,0, //g[0-9]
-0,0,0,0,0,0,0,0,0,0, //h[0-9]
-0,0,0,0,0,0,0,0,0,0  //I[0-9]
-]
- const Setup: React.FC = () => {
-   useEffect(() => {
-
-   })
-  
+const Setup: React.FC = () => {
+  const gameBoardArr: Array<JSX.Element> = [];
+  for (let i=0; i < 90; i++) {
+    gameBoardArr.push(<div key={i}>{i}</div>);
+  }
   return (
     <div className="Setup">
       <section className="setup">
         <div className="game-cell">
-          <div className="game-board">{gameBoardArr.map((item, index) => (<div key={index}>{item}</div>))}</div>
+          <div className="game-board">{gameBoardArr}</div>
           <div className="boat-selection">Lots of ships</div>
         </div>
         <div className="placeships-cell">Place Ships</div>

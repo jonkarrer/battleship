@@ -1,6 +1,4 @@
-import React, {useContext, useState} from 'react'
-import Ship from './factories/shipFactory';
-import GameBoard from './factories/gameBoardFactory';
+import React, {useContext, useState} from 'react';
 import Player from './factories/playerFactory';
 import Computer from './factories/computerFactory';
 
@@ -9,6 +7,7 @@ const HumanPlayerContext = React.createContext(Player.prototype);
 const ComputerPlayerContext = React.createContext(Computer.prototype);
 export const humanPlayer = () => useContext(HumanPlayerContext);
 export const computerPlayer = () => useContext(ComputerPlayerContext);
+
 //Change Game Level
 const GameContext = React.createContext(0);
 const ChangeGameContext = React.createContext(()=>{})
@@ -24,8 +23,6 @@ playerOne.initHumanPlayer();
 playerTwo.initComputerPlayer();
 
 export const GameProvider = ({children}:GameProps) => {
- 
-
   const [gameLevel, setGameLevel] = useState(0);
   const changeLevel = () => setGameLevel(gameLevel + 1);
   return (
