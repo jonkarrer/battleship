@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {changeGameLevel, humanPlayer} from '../GameProvider';
 import './Setup.css'
 
+
+
 const Setup: React.FC = () => {
+  const readyPlayerOne:any = humanPlayer();
+  const [shipPlacementAxis, setAxis] = useState('Horizontal');
   const gameBoardArr: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
-    gameBoardArr.push(<div key={i}>{i}</div>);
+    gameBoardArr.push(<div key={i} onClick={() => {readyPlayerOne.placeShip(shipPlacementAxis, i, 4);}}>{i}</div>);
   }
   return (
     <div className="Setup">
@@ -16,8 +20,7 @@ const Setup: React.FC = () => {
         </div>
         <div className="placeships-cell">Place Ships</div>
         <div className="options-cell">
-          <div>Reset</div>
-          <div>Randomize Ships</div>
+          <div onClick={() => setAxis('Vertical')}>Change Axis: {shipPlacementAxis}</div>
           <div onClick={changeGameLevel()}>START!</div>
         </div>
       </section>

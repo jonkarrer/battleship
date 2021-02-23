@@ -1,12 +1,9 @@
 import React, {useContext, useState} from 'react';
 import Player from './factories/playerFactory';
-import Computer from './factories/computerFactory';
 
 //Game Flow Control
-const HumanPlayerContext = React.createContext(Player.prototype);
-const ComputerPlayerContext = React.createContext(Computer.prototype);
+const HumanPlayerContext = React.createContext(Player.prototype); 
 export const humanPlayer = () => useContext(HumanPlayerContext);
-export const computerPlayer = () => useContext(ComputerPlayerContext);
 
 //Change Game Level
 const GameContext = React.createContext(0);
@@ -18,9 +15,6 @@ interface GameProps {
   children: any;
 }
 const playerOne = new Player();
-const playerTwo = new Computer();
-playerOne.initHumanPlayer();
-playerTwo.initComputerPlayer();
 
 export const GameProvider = ({children}:GameProps) => {
   const [gameLevel, setGameLevel] = useState(0);
@@ -30,9 +24,7 @@ export const GameProvider = ({children}:GameProps) => {
       <GameContext.Provider value={gameLevel}>
         <ChangeGameContext.Provider value={changeLevel}>
           <HumanPlayerContext.Provider value={playerOne}>
-            <ComputerPlayerContext.Provider value={playerTwo}>
-              {children}
-            </ComputerPlayerContext.Provider>
+            {children}
           </HumanPlayerContext.Provider>
         </ChangeGameContext.Provider>
       </GameContext.Provider>

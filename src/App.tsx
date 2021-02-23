@@ -7,13 +7,14 @@ import {currentGameLevel} from './GameProvider';
 
 interface AppProps {}
 function App({}: AppProps) {
-  if(currentGameLevel() === 0) {
+  const contextGameLevel = currentGameLevel();
+  if(contextGameLevel === 0) {
     return (
       <div>
         <Home />
       </div>
     )
-  } else if (currentGameLevel() === 1) {
+  } else if (contextGameLevel === 1) {
     return (
       <div>
         <Setup />

@@ -9,6 +9,13 @@ class Player {
   initHumanPlayer() {
     this.humanBoard.buildGrid();
   }
+  placeShip(orientation:string, someDomSelection:number, whichBoatLength:number) {
+    if (orientation === 'Vertical') {
+      this.placeShipVertical(someDomSelection, whichBoatLength);
+    } else { 
+      this.placeShipHorizontal(someDomSelection, whichBoatLength);
+    }
+  }
   placeShipHorizontal(someDomSelection:number, whichBoatLength:number) {
     let coordinatesArr:Array<number>=[];
     for (let i=0; i < whichBoatLength; i++) {
