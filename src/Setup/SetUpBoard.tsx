@@ -16,9 +16,6 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
     gameCellRefs[n] = useRef(0);
   }
   useEffect(() => {
-    
-  })
-  useEffect(() => {
     function turnOffCellsOnEdgeOfBoard() {
       if (shipLength === 4) {
         //turn off columns' 7-9 cells' event listeners off

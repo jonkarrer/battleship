@@ -121,5 +121,3 @@ describe('Test Computer build Methods', () => {
     expect(computerPlayer.computerBoard.grid.indexOf(10)).toBe(10);
   });
 });
-
-
