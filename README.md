@@ -200,8 +200,6 @@ npm run deploy
 
 ### For tomorrow
 
-1. Fix when boat hovers outside of box it wraps.
+1. Fix when boat passes 89, it throws error.
 
-2. Fix when boat passes 89, it throws error.
-
-3. Fix when 1-3 are clicked, throws error because the i - 4 is too long for that corner to turn of pointer events. Need to shorten the i - 4 with and if statement maybe.
+2. Fix when 1-3 are clicked, throws error because the i - 4 is too long for that corner to turn of pointer events. Need to shorten the i - 4 with and if statement maybe.
