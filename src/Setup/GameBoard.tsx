@@ -1,12 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react'
-import {humanPlayer} from '../GameProvider';
+import {humanPlayer, changeGameLevel} from '../GameProvider';
 
 interface GameBoardProps {
   axis: string;
 }
 const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
+  const startGame = changeGameLevel();
   const readyPlayerOne = humanPlayer();
-  const [eventHoverColor, setEventColor] = useState('white');
+  const [eventHoverColor, setEventColor] = useState('rgba(100, 100, 100, .6)');
   const [shipLength, setShipLength] = useState(4);
 
   //need multiple varaible names for useRef hook to append to game cells. 
@@ -18,7 +19,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
   useEffect(() => {
     function turnOffCellsOnEdgeOfBoard() {
       if (shipLength === 4) {
-        //turn of columns 7-9 cells' event listeners off
+        //turn off columns' 7-9 cells' event listeners off
         for (let i=7; i < 90; i += 10) {
           gameCellRefs[i].current.style.pointerEvents = "none";
         }
@@ -33,7 +34,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
         for (let i=7; i < 90; i += 10) {
           gameCellRefs[i].current.style.pointerEvents = "auto";
         }
-      } else {
+      } else if (shipLength === 2) {
         //Turn column 8 back on
         for (let i=8; i < 90; i += 10) {
           gameCellRefs[i].current.style.pointerEvents = "auto";
@@ -57,7 +58,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
 
   const mouseLeaveCell = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
-    setEventColor('white');
+    setEventColor('rgba(100, 100, 100, .6)');
     if (gameCellRefs[targetCellRef].current.style.background === "red") {
       return
     } else {
@@ -151,11 +152,13 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
       setShipLength(shipLength - 1);
     } else if (shipLength === 3) {
         if (allThreeShipsPlaced.current === 3) {
-          setShipLength(shipLength -1)
+          setShipLength(shipLength - 1);
         } else {
           allThreeShipsPlaced.current = allThreeShipsPlaced.current + 1;
         }
-    }
+    } else if (shipLength === 2) {
+      setTimeout(startGame, 2000)
+    } 
 
   }
 
@@ -169,7 +172,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
         onMouseOut={mouseLeaveCell} 
         onMouseEnter={mouseEnterCell} 
         key={i} 
-      >{i}</div>);
+      ></div>);
   }
   return (
     <div className="game-board">

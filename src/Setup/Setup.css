@@ -15,7 +15,7 @@
 .game-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 .game-board {
   border: red solid thin;
@@ -26,8 +26,8 @@
   grid-template-columns: repeat(10,auto);
 }
 .game-board div {
-  border: red solid thin;
-  background-color: white;
+  border: white solid thin;
+  background: rgba(100, 100, 100, .6);
 }
 .game-board div:hover {
   background: hsla(20, 100%, 50%, .5);
@@ -48,19 +48,43 @@
   justify-content: space-between;
   width: 100%;
   font-size: 30px;
+  z-index: 1;
 }
 .options-cell div:hover {
   cursor: pointer;
 }
 .boat-1-setup {
   position: absolute;
+  left: 40px;
+}
+.boat-1-setup img {
+  height: 400px;
+  width: 400px;
 }
 .boat-2-setup {
   position: absolute;
-  top: 0;
-  right: 20px;
+  top: 20px;
+  right: 40px;
 }
 .boat-2-setup img {
   height: 250px;
   width: 250px;
+}
+.boat-3-setup {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+}
+.boat-3-setup img {
+  height: 450px;
+  width: 450px;
+}
+.boat-4-setup {
+  position: absolute;
+  top: 0;
+  left: 20%;
+}
+.boat-4-setup img {
+  height: 150px;
+  width: 150px;
 }
