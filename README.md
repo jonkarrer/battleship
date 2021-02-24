@@ -194,12 +194,66 @@ npm run deploy
 
 5. !!! Super Important 'Gotcha' with useContext() hook. You HAVE to assign the context, humanPlayer(), to a variable inside the body of the funtion BEFORE using it. If not, a hook error will occur.
 
+### Making the cells on the gameboard interactive
+
+1. Made an empty array, innerGridArr
+
+2. Made a loop that pushed div elements into array.
+
+3. Each div element was assigned multiple attributes to be used in the gameBoard component logic.
+
+    ```javascript
+        const innerGridArr: Array<JSX.Element> = [];
+        for (let i=0; i < 90; i++) {
+            innerGridArr.push(
+            <div 
+                className={`${i}`} 
+                ref= {gameCellRefs[i]}
+                onClick={placeShipOnTarget}
+                onMouseOut={mouseLeaveCell} 
+                onMouseEnter={mouseEnterCell} 
+                key={i} 
+            ></div>);
+        }
+    ```
+
+4. I then put the array in JSX to render in browser.
+
+    ```javascript
+        return (
+            <div className="game-board">
+            {innerGridArr}
+            </div>
+        )
+    ```
+
+### Setting up 90 useRef() hooks on game cells
+
+1. Made an empty array, then assigned each index a useRef(0)
+
+    ```javascript
+        const gameCellRefs: Array<any> = [];
+        for (let n = 0; n < 90; n++) {
+            gameCellRefs[n] = useRef(0);
+        }
+    ```
+
+2. This aligned with my innerGridArr. Now each innerGridArr element has a ref equal to one index in my gameCellRefs array.
+
+3. The reason for this is to access each cell individually when the user interacts with the board.
+
 ### Ship hover effect on board
 
-### Ship placement logic with useRef()
+1. I utilized the mouseEnter and mouseOut event handlers in react.
 
-### For tomorrow
+2. I wanted the cursor to be the "left end" of the ship being placed.
 
-1. Fix when boat passes 89, it throws error.
+### Ship placement  horizontal logic with useRef()
 
-2. Fix when 1-3 are clicked, throws error because the i - 4 is too long for that corner to turn of pointer events. Need to shorten the i - 4 with and if statement maybe.
+### For later
+
+ 1. After last ship, turn off board and get ready to start.
+
+ 2. Create the verical placement logic.
+
+ 3. create a new game board that simply colors square on hit for both computer and player
