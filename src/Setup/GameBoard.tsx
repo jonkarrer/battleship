@@ -10,7 +10,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
   const handleMouseEnter = (evt:any) => {
     const targetSquareRefNum = parseInt(evt.target.className);
     for (let i=0; i < shipLength; i++) {
-      gameSquareRefNumbers[targetSquareRefNum+i].current.style.background = "green";
+      gameSquaresRefNums[targetSquareRefNum+i].current.style.background = "green";
     } 
   }
   const handleMouseOut = (evt:any) => {
@@ -18,7 +18,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
     const targetSquareRefNum = parseInt(evt.target.className);
     evt.target.style.background = eventHoverColor;
     for (let i=0; i < shipLength; i++) {
-      gameSquareRefNumbers[targetSquareRefNum + i ].current.style.background = eventHoverColor;
+      gameSquaresRefNums[targetSquareRefNum + i ].current.style.background = eventHoverColor;
     } 
   }
   const handleClick = (evt:any) => {
@@ -27,11 +27,11 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
     readyPlayerOne.placeShip(axis, targetSquareRefNum, 4);
     for (let i=0; i < shipLength; i++) {
       // Color i number squares to the right of click event
-      gameSquareRefNumbers[targetSquareRefNum + i ].current.style.background = "red";
+      gameSquaresRefNums[targetSquareRefNum + i ].current.style.background = "red";
       // i+1 turns off the square behind the ship. Prevent overlap. 
-      gameSquareRefNumbers[targetSquareRefNum + (i + 1)].current.style.pointerEvents = "none";
+      gameSquaresRefNums[targetSquareRefNum + (i + 1)].current.style.pointerEvents = "none";
       // Turn off squares to left of boat equal to lenght of the boat. 
-      gameSquareRefNumbers[targetSquareRefNum - i ].current.style.pointerEvents = "none";
+      gameSquaresRefNums[targetSquareRefNum - i ].current.style.pointerEvents = "none";
     } 
     handleClickSideEffects();
   }
@@ -39,16 +39,16 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
     setEventColor('red');
     setShipLength(shipLength - 1); 
   }
-  const gameSquareRefNumbers: Array<any> = [];
+  const gameSquaresRefNums: Array<any> = [];
   for (let n = 0; n < 90; n++) {//Creates multiple varaible names for useRef hook. 
-    gameSquareRefNumbers[n] = useRef(0);
+    gameSquaresRefNums[n] = useRef(0);
   }
   const innerGridArr: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     innerGridArr.push(
       <div 
         className={`${i}`} 
-        ref= {gameSquareRefNumbers[i]}
+        ref= {gameSquaresRefNums[i]}
         onClick={handleClick}
         onMouseOut={handleMouseOut} 
         onMouseEnter={handleMouseEnter} 
