@@ -9,7 +9,23 @@ const ComputerBoard = () => {
   const attackComputer = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
     computerPlayer.computerBoard.receiveAttack(targetCellRef);
-    console.log(computerPlayer.computerBoard.shipYard);
+    console.log(computerPlayer.computerBoard.missedShotsTracker);
+    markHitOnBoard(targetCellRef);
+    markMissOnBoard();
+  }
+  function markHitOnBoard(targetCellRef:number) {
+    for (let ship of computerPlayer.computerBoard.shipYard) {//Loop through ships and then each ships coordinates prop.
+      for (let hit of ship.hitTracker) {
+        if (hit === targetCellRef) {
+          gameCellRefs[targetCellRef].current.style.background = "red";
+        }
+      }
+    };
+  }
+  function markMissOnBoard() {
+    for (let hit of computerPlayer.computerBoard.missedShotsTracker) {
+      gameCellRefs[hit].current.style.background = "green";
+    }
   }
   const gameCellRefs: Array<any> = [];
   for (let n = 0; n < 90; n++) {
