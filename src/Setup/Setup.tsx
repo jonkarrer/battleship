@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {changeGameLevel} from '../GameProvider';
-import GameBoard from './GameBoard';
+import GameBoard from './SetUpBoard';
 import './Setup.css'
 
 const Setup: React.FC = () => {

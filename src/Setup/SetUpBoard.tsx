@@ -1,10 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {humanPlayer, changeGameLevel} from '../GameProvider';
 
-interface GameBoardProps {
+interface SetUpBoardProps {
   axis: string;
 }
-const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
+const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
   const startGame = changeGameLevel();
   const readyPlayerOne = humanPlayer();
   const [eventHoverColor, setEventColor] = useState('rgba(100, 100, 100, .6)');
@@ -181,4 +181,4 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
   )
 }
 
-export default GameBoard;
+export default SetUpBoard;

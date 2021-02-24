@@ -28,6 +28,12 @@
   height: 500px;
   width: 500px;
   z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(10,auto);
+}
+.user-game-board div {
+  border: white solid thin;
+  background: rgba(100, 100, 100, .6);
 }
 .turn-tracker {
   font-size: 25px;
@@ -37,6 +43,15 @@
   height: 500px;
   width: 500px;
   z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(10,auto);
+}
+.comp-game-board div {
+  border: white solid thin;
+  background: rgba(100, 100, 100, .6);
+}
+.comp-game-board div:hover {
+  background: hsla(20, 100%, 50%, .5);
 }
 .fire-cannons-cell {
   font-size: 75px;
