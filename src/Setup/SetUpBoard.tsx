@@ -15,7 +15,9 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
   for (let n = 0; n < 90; n++) {
     gameCellRefs[n] = useRef(0);
   }
-  
+  useEffect(() => {
+    
+  })
   useEffect(() => {
     function turnOffCellsOnEdgeOfBoard() {
       if (shipLength === 4) {

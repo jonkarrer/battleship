@@ -1,6 +1,5 @@
 import React from 'react';
-import PlayerBoard from './PlayerBoard';
-import ComputerBoard from './ComputerBoard'; 
+import GameBoard from './GameBoard'; 
 import './Game.css';
 const Game: React.FC = () => {
 
@@ -11,11 +10,7 @@ const Game: React.FC = () => {
           <div className="user-boat-count">Player Boats: 10</div>
           <div className="comp-boat-count">Computer Boats: 10</div>
         </div>
-        <div className="game-board-cell">
-          <PlayerBoard />
-          <div className="turn-tracker">Your Turn</div>
-          <ComputerBoard />
-        </div>
+        <GameBoard />
         <div className="fire-cannons-cell">Fire Cannons</div>
       </section>
       <div className="boat-1-game"><img src="./assets/2.jpg" alt="boat"/></div>
