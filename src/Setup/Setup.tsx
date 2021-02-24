@@ -1,15 +1,48 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import {changeGameLevel, humanPlayer} from '../GameProvider';
 import './Setup.css'
 
-
-
 const Setup: React.FC = () => {
+  const elementArr: Array<any> = [];
+  for (let n = 0; n < 90; n++) {
+    elementArr[n] = useRef(0);
+  }
+  const handleMouseEnter = (evt:any) => {
+    const gameBoardArrIndex = parseInt(evt.target.className);
+    evt.target.style.background = "green";
+    for (let i=1; i <= 3; i++) {
+      elementArr[gameBoardArrIndex+i].current.style.background = "green";
+    } 
+  }
+  const handleClick = (evt:any) => {
+    const gameBoardArrIndex = parseInt(evt.target.className);
+    readyPlayerOne.placeShip(shipPlacementAxis, gameBoardArrIndex, 4);
+    evt.target.style.background = "red";
+    for (let i=1; i <= 3; i++) {
+      elementArr[gameBoardArrIndex+i].current.style.background = "red";
+    } 
+  }
+  const handleMouseOut = (evt:any) => {
+    const gameBoardArrIndex = parseInt(evt.target.className);
+    evt.target.style.background = "white";
+    for (let i=1; i <= 3; i++) {
+      elementArr[gameBoardArrIndex+i].current.style.background = "white";
+    } 
+  }
+ 
   const readyPlayerOne:any = humanPlayer();
   const [shipPlacementAxis, setAxis] = useState('Horizontal');
   const gameBoardArr: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
-    gameBoardArr.push(<div key={i} onClick={() => {readyPlayerOne.placeShip(shipPlacementAxis, i, 4);}}>{i}</div>);
+    gameBoardArr.push(
+      <div 
+        className={`${i}`} 
+        ref={elementArr[i]} 
+        onClick={handleClick}
+        onMouseOut={handleMouseOut} 
+        onMouseEnter={handleMouseEnter} 
+        key={i} 
+      ></div>);
   }
   return (
     <div className="Setup">
