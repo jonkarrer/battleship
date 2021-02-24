@@ -246,9 +246,39 @@ npm run deploy
 
 1. I utilized the mouseEnter and mouseOut event handlers in react.
 
-2. I wanted the cursor to be the "left end" of the ship being placed.
+2. I wanted the cursor to be the "left end" of the ship being placed. The target of the cursor has a reference number. I used that to acces the properties of the element.
 
-### Ship placement  horizontal logic with useRef()
+3. onMouseEnter - From the cursor, target reference number, I added a loop that colored all cells to the right of the cursor.
+
+4. onMouseOut - The logic was flipped to turn those cells back to original grey color. This creates the hover effect.
+
+### Ship placement horizontal logic
+
+1. I needed the target squares to permantly show a ship has been placed.
+
+2. I utilized the onClick event in React.
+
+3. This click event does alot of heavy lifting. I needed to talk to my back end and I needed to visually show the ship placement.
+
+    ```javascript
+        const placeShipOnTarget = (evt:any) => {
+            evt.target.style.pointerEvents = "none";
+            const targetCellRef = parseInt(evt.target.className);
+
+            readyPlayerOne.placeShip(axis, targetCellRef, shipLength);
+
+            colorInShipOnBoard(targetCellRef);
+            setEventColor('red'); //Place red ship
+        }
+    ```
+
+4. First I needed to disable the event listeners so mouseEnter and mouseOut would not affect the permanent placement.
+
+5. Second I needed to tell my back end logic that a ship has been placed. The backed needs the axis, a useState() value, the target cell, and how long the ship is, another useState() value. Refer to playerFactory.ts.
+
+6. Third I needed to color in where the ship has been placed. I passed the clicked cell to that function.
+
+7. Lastly I needed to change the state of the event color. Why? I had conflicts with mouseOut event coloring the ships back to grey. I clicked, then moved the mouse and the color would change. This changes the mouseOut color to the color I needed the placed ship to be so it does not change to grey.
 
 ### For later
 
