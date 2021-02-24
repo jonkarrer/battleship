@@ -4,9 +4,7 @@ import Setup from './Setup/Setup';
 import Game from './Game/Game';
 import {currentGameLevel} from './GameProvider';
 
-
-interface AppProps {}
-function App({}: AppProps) {
+function App() {
   const contextGameLevel = currentGameLevel();
   if(contextGameLevel === 0) {
     return (

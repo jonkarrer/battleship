@@ -3,12 +3,15 @@ import {changeGameLevel} from '../GameProvider';
 import GameBoard from './GameBoard';
 import './Setup.css'
 
-//Need to fix errors
-//Fixed overlap but elemetns 0-3 create and edge case
-//Boats shouldnt wrap on right edge
-//Need if statements everywhere
 const Setup: React.FC = () => {
   const [shipPlacementAxis, setAxis] = useState('Horizontal');
+  const handleClick = () => {
+    if(shipPlacementAxis === 'Horizontal') {
+      setAxis('Vertical');
+    } else {
+      setAxis('Horizontal');
+    }
+  }
   return (
     <div className="Setup">
       <section className="setup">
@@ -18,7 +21,7 @@ const Setup: React.FC = () => {
         </div>
         <div className="placeships-cell">Place Ships</div>
         <div className="options-cell">
-          <div onClick={() => setAxis('Vertical')}>Change Axis: {shipPlacementAxis}</div>
+          <div onClick={handleClick}>Change Axis: {shipPlacementAxis}</div>
           <div onClick={changeGameLevel()}>START!</div>
         </div>
       </section>

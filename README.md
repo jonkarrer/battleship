@@ -193,3 +193,15 @@ npm run deploy
     ```
 
 5. !!! Super Important 'Gotcha' with useContext() hook. You HAVE to assign the context, humanPlayer(), to a variable inside the body of the funtion BEFORE using it. If not, a hook error will occur.
+
+### Ship hover effect on board
+
+### Ship placement logic with useRef()
+
+### For tomorrow
+
+1. Fix when boat hovers outside of box it wraps.
+
+2. Fix when boat passes 89, it throws error.
+
+3. Fix when 1-3 are clicked, throws error because the i - 4 is too long for that corner to turn of pointer events. Need to shorten the i - 4 with and if statement maybe.

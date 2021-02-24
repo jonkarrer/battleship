@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react'
 import {humanPlayer} from '../GameProvider';
+
 interface GameBoardProps {
   axis: string;
 }
@@ -25,6 +26,7 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
     evt.target.style.pointerEvents = "none";
     const targetSquareRefNum = parseInt(evt.target.className);
     readyPlayerOne.placeShip(axis, targetSquareRefNum, 4);
+    console.log(readyPlayerOne.humanBoard.shipYard);
     for (let i=0; i < shipLength; i++) {
       // Color i number squares to the right of click event
       gameSquaresRefNums[targetSquareRefNum + i ].current.style.background = "red";
@@ -61,4 +63,5 @@ const GameBoard: React.FC<GameBoardProps> = ({axis}) => {
     </div>
   )
 }
+
 export default GameBoard;
