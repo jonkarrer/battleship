@@ -5,6 +5,7 @@ import './Setup.css'
 
 const Setup: React.FC = () => {
   const [shipPlacementAxis, setAxis] = useState('Horizontal');
+
   const handleClick = () => {
     if(shipPlacementAxis === 'Horizontal') {
       setAxis('Vertical');
@@ -12,6 +13,7 @@ const Setup: React.FC = () => {
       setAxis('Horizontal');
     }
   }
+  
   return (
     <div className="Setup">
       <section className="setup">
