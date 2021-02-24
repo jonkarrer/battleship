@@ -64,3 +64,8 @@
   height: 250px;
   width: 250px;
 }
+.carrier {
+  width: 200px;
+  height: 50px;
+  background-color: red;
+}
