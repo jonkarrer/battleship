@@ -1,11 +1,11 @@
 import React, {useRef, useEffect} from 'react'
 import Computer from '../factories/computerFactory';
-import {humanPlayer, changeGameLevel} from '../GameProvider';
+import {humanPlayer, changeGameLevel, changeGameWinner} from '../GameProvider';
 
 
 const ComputerBoard: React.FC = () => {
-
   let endGame = changeGameLevel();
+  let winner = changeGameWinner();
   let readyPlayerOne = humanPlayer();
   let compTurnOverlay:any = useRef(0);
   let playerTurnOverlay:any = useRef(0);
@@ -62,6 +62,7 @@ const ComputerBoard: React.FC = () => {
     let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();
     playerShipCount;
     if (playerShipCount) {
+      winner();
       endGame();
     };
   }

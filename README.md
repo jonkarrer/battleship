@@ -285,3 +285,7 @@ npm run deploy
  1. When game ends, make screen appear
 
  2. Make set up to game transition better
+
+ 3. Make vertical placements work
+
+ 4. Make computer player place random ships

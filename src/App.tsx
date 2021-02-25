@@ -24,7 +24,7 @@ function App() {
       <div>
         <Game />
       </div>
-    )
+    );
   } else {
     return (
       <div>
