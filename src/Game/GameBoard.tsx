@@ -22,19 +22,21 @@ const ComputerBoard: React.FC = () => {
     computerPlayer.initComputerPlayer();
   });
 
-  const humanPlayerTurn = (evt:any) => {
+  const humanTurn = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
-    computerPlayer.computerBoard.receiveAttack(targetCellRef);
     let humanAttack:string = computerPlayer.computerBoard.receiveAttack(targetCellRef);
+    humanAttack;
     if (humanAttack === "hit") {
+      countSunkComputerShips();
       computerCellRefs[targetCellRef].current.style.background = "red";
     } else {
+      console.log(computerPlayer.computerBoard.shipYard);
       computerCellRefs[targetCellRef].current.style.background = "green";
-        setTimeout(() => {
-          compTurnOverlay.current.style.display="flex"; 
-          playerTurnOverlay.current.style.display="none";
-        }, 300);
-        setTimeout(computerTurn, 2000);//Change turns because human missed.
+      setTimeout(() => {
+        compTurnOverlay.current.style.display="flex"; 
+        playerTurnOverlay.current.style.display="none";
+      }, 300);
+      setTimeout(computerTurn, 2000);//Change turns because human missed.
     };
   }
 
@@ -44,6 +46,7 @@ const ComputerBoard: React.FC = () => {
     let computerAttack:string = readyPlayerOne.humanBoard.receiveAttack(randomCoordinate);
     //Loop through ships and then each ships coordinates prop.
     if (computerAttack === "hit") {
+      countSunkPlayerShips();
       playerCellRefs[randomCoordinate].current.style.background = "red";
       setTimeout(computerTurn, 2500);
     } else {
@@ -54,6 +57,22 @@ const ComputerBoard: React.FC = () => {
       }, 1000);
     }
   };
+  
+  function countSunkPlayerShips() {
+    let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();
+    playerShipCount;
+    if (playerShipCount) {
+      console.log('Game Over');
+    };
+  }
+  function countSunkComputerShips() {
+    let computerShipCount:boolean = computerPlayer.computerBoard.countSunkShips();
+    computerShipCount;
+    if (computerShipCount) {
+      console.log('Game Over');
+    };
+  }
+
   const playerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     playerBoardCells.push(
@@ -63,14 +82,14 @@ const ComputerBoard: React.FC = () => {
       ref= {playerCellRefs[i]}
       ></div>);
   }
-  
+
   const computerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     computerBoardCells.push(
       <div 
         className={`${i}`} 
         ref={computerCellRefs[i]}
-        onClick={humanPlayerTurn}
+        onClick={humanTurn}
         key={i} 
       ></div>);
   }
