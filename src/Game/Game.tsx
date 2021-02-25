@@ -2,14 +2,9 @@ import React from 'react';
 import GameBoard from './GameBoard'; 
 import './Game.css';
 const Game: React.FC = () => {
-
   return (
     <div className="Game">
       <section className="game-grid">
-        <div className="boat-count-cell">
-          <div className="user-boat-count">Player Boats: 10</div>
-          <div className="comp-boat-count">Computer Boats: 10</div>
-        </div>
         <GameBoard />
         <div className="fire-cannons-cell">Fire Cannons</div>
       </section>
