@@ -37,10 +37,9 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
         //Turn column 8 back on
         for (let i=8; i < 90; i += 10) {
           gameCellRefs[i].current.style.pointerEvents = "auto";
-        }
-      }
-    }
-    console.log(readyPlayerOne.humanBoard.shipYard);
+        };
+      };
+    };
     turnOffCellsOnEdgeOfBoard();
   },[shipLength]);
   

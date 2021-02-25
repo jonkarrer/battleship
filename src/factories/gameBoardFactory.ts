@@ -55,6 +55,8 @@ class GameBoard {
     }
     if (sunkShipTotal === this.shipYard.length) {
       return true
+    } else {
+      return sunkShipTotal;
     }
   }
 }

@@ -1,13 +1,11 @@
 import React, {useRef, useEffect} from 'react'
 import Computer from '../factories/computerFactory';
-import {humanPlayer, changeGameLevel, currentGameLevel} from '../GameProvider';
+import {humanPlayer, changeGameLevel} from '../GameProvider';
 
 
 const ComputerBoard: React.FC = () => {
 
   let endGame = changeGameLevel();
-  let currentLevel = currentGameLevel();
-  let computerPlayer:Computer;
   let readyPlayerOne = humanPlayer();
   let compTurnOverlay:any = useRef(0);
   let playerTurnOverlay:any = useRef(0);
@@ -21,6 +19,7 @@ const ComputerBoard: React.FC = () => {
     computerCellRefs[n] = useRef(0);
   }
 
+  let computerPlayer:Computer;
   useEffect(() => {
     computerPlayer = new Computer();
     computerPlayer.initComputerPlayer();
@@ -31,10 +30,8 @@ const ComputerBoard: React.FC = () => {
     let humanAttack:string = computerPlayer.computerBoard.receiveAttack(targetCellRef);
     humanAttack;
     if (humanAttack === "hit") {
-      countSunkComputerShips();
       computerCellRefs[targetCellRef].current.style.background = "red";
     } else {
-      console.log(computerPlayer.computerBoard.shipYard);
       computerCellRefs[targetCellRef].current.style.background = "green";
       setTimeout(() => {
         compTurnOverlay.current.style.display="flex"; 
@@ -42,13 +39,12 @@ const ComputerBoard: React.FC = () => {
       }, 300);
       setTimeout(computerTurn, 2000);//Change turns because human missed.
     };
+    countSunkComputerShips();
   }
-
   function computerTurn() {
     const randomCoordinate = Math.floor(Math.random() * 90);
-    readyPlayerOne.humanBoard.receiveAttack(randomCoordinate);
     let computerAttack:string = readyPlayerOne.humanBoard.receiveAttack(randomCoordinate);
-    //Loop through ships and then each ships coordinates prop.
+    computerAttack;
     if (computerAttack === "hit") {
       countSunkPlayerShips();
       playerCellRefs[randomCoordinate].current.style.background = "red";
@@ -59,9 +55,9 @@ const ComputerBoard: React.FC = () => {
         compTurnOverlay.current.style.display="none"; 
         playerTurnOverlay.current.style.display="flex"
       }, 1000);
-    }
+    };
   };
-  
+
   function countSunkPlayerShips() {
     let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();
     playerShipCount;
@@ -70,9 +66,9 @@ const ComputerBoard: React.FC = () => {
     };
   }
   function countSunkComputerShips() {
-    let computerShipCount:boolean = computerPlayer.computerBoard.countSunkShips();
+    let computerShipCount:any = computerPlayer.computerBoard.countSunkShips();
     computerShipCount;
-    if (computerShipCount) {
+    if (computerShipCount === true) {
       endGame();
     };
   }
@@ -86,7 +82,6 @@ const ComputerBoard: React.FC = () => {
       ref= {playerCellRefs[i]}
       ></div>);
   }
-
   const computerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     computerBoardCells.push(
@@ -99,10 +94,6 @@ const ComputerBoard: React.FC = () => {
   }
   return (
     <React.Fragment>
-    <div className="boat-count-cell">
-    <div className="user-boat-count">Player Boats: 10</div>
-    <div className="comp-boat-count">Computer Boats: 10</div>
-  </div>
     <div className="game-board-cell">
       <div className="user-game-board">
       <div className="player-turn-overlay" ref={playerTurnOverlay}>
