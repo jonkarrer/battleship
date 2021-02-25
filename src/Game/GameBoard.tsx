@@ -1,9 +1,12 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, {useRef, useEffect} from 'react'
 import Computer from '../factories/computerFactory';
-import {humanPlayer} from '../GameProvider';
+import {humanPlayer, changeGameLevel, currentGameLevel} from '../GameProvider';
+
 
 const ComputerBoard: React.FC = () => {
 
+  let endGame = changeGameLevel();
+  let currentLevel = currentGameLevel();
   let computerPlayer:Computer;
   let readyPlayerOne = humanPlayer();
   let compTurnOverlay:any = useRef(0);
@@ -56,36 +59,21 @@ const ComputerBoard: React.FC = () => {
         compTurnOverlay.current.style.display="none"; 
         playerTurnOverlay.current.style.display="flex"
       }, 1000);
-
-    };
+    }
   };
-  const [playerShipsLeft, setPlayerSunkBoats] = useState(5);
+  
   function countSunkPlayerShips() {
     let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();
     playerShipCount;
     if (playerShipCount) {
-      console.log('Game Over');
-    } else {
-      for(let ship of computerPlayer.computerBoard.shipYard) {
-        if (ship.hasSank) {
-        setPlayerSunkBoats(playerShipsLeft - 1); 
-        };
-      };
+      endGame();
     };
   }
-  const [computerShipsLeft, setCompSunkBoats] = useState(5);
   function countSunkComputerShips() {
     let computerShipCount:boolean = computerPlayer.computerBoard.countSunkShips();
     computerShipCount;
-
     if (computerShipCount) {
-      console.log('Game Over');
-    } else {
-      for(let ship of computerPlayer.computerBoard.shipYard) {
-        if (ship.hasSank) {
-        setCompSunkBoats(computerShipsLeft - 1); 
-        };
-      };
+      endGame();
     };
   }
 
@@ -98,7 +86,7 @@ const ComputerBoard: React.FC = () => {
       ref= {playerCellRefs[i]}
       ></div>);
   }
-  
+
   const computerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     computerBoardCells.push(
@@ -112,9 +100,9 @@ const ComputerBoard: React.FC = () => {
   return (
     <React.Fragment>
     <div className="boat-count-cell">
-      <div className="user-boat-count">Player Boats: {playerShipsLeft}</div>
-      <div className="comp-boat-count">Computer Boats: {computerShipsLeft}</div>
-    </div>
+    <div className="user-boat-count">Player Boats: 10</div>
+    <div className="comp-boat-count">Computer Boats: 10</div>
+  </div>
     <div className="game-board-cell">
       <div className="user-game-board">
       <div className="player-turn-overlay" ref={playerTurnOverlay}>

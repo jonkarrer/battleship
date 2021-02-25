@@ -50,13 +50,12 @@ class GameBoard {
     let sunkShipTotal:number = 0;
     for(let ship of this.shipYard) {
       if (ship.hasSank) {
-        sunkShipTotal += 1; 
-      } 
-    };
+        sunkShipTotal += 1 
+      }
+    }
     if (sunkShipTotal === this.shipYard.length) {
       return true
     }
   }
 }
-
 export default GameBoard;
