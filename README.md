@@ -282,8 +282,8 @@ npm run deploy
 
 ### For later
 
- 1. After last ship, turn off board and get ready to start.
+ 1. Reduc ship count when boats sink
 
- 2. Create the verical placement logic.
+ 2. Make the ship checker fire, and if all boats are sunk declare loss
 
- 3. create a new game board that simply colors square on hit for both computer and player
+ 3. Make set up to game transition better

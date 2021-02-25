@@ -1,93 +1,92 @@
 import React, {useRef, useEffect} from 'react'
 import Computer from '../factories/computerFactory';
 import {humanPlayer} from '../GameProvider';
-const ComputerBoard = () => {
+
+const ComputerBoard: React.FC = () => {
   let computerPlayer:Computer;
   let readyPlayerOne = humanPlayer();
   let compTurnOverlay:any = useRef(0);
+  let playerTurnOverlay:any = useRef(0);
+
+  const playerCellRefs: Array<any> = [];
+  for (let n = 0; n < 90; n++) {
+    playerCellRefs[n] = useRef(0);
+  }
+  const computerCellRefs: Array<any> = [];
+  for (let n = 0; n < 90; n++) {
+    computerCellRefs[n] = useRef(0);
+  }
 
   useEffect(() => {
     computerPlayer = new Computer();
     computerPlayer.initComputerPlayer();
   });
 
-  const attackComputer = (evt:any) => {
+  const humanPlayerTurn = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
     computerPlayer.computerBoard.receiveAttack(targetCellRef);
-    markHitOnBoard(targetCellRef);
-    markMissOnBoard(targetCellRef);
-  }
-  function markHitOnBoard(targetCellRef:number) {
-    for (let ship of computerPlayer.computerBoard.shipYard) {//Loop through ships and then each ships coordinates prop.
-      for (let hit of ship.hitTracker) {
-        if (hit === targetCellRef) {
-          gameCellComputerRefs[targetCellRef].current.style.background = "red";
-        }
-      }
+    let humanAttack:string = computerPlayer.computerBoard.receiveAttack(targetCellRef);
+    if (humanAttack === "hit") {
+      computerCellRefs[targetCellRef].current.style.background = "red";
+    } else {
+      computerCellRefs[targetCellRef].current.style.background = "green";
+        setTimeout(() => {
+          compTurnOverlay.current.style.display="flex"; 
+          playerTurnOverlay.current.style.display="none";
+        }, 300);
+        setTimeout(computerTurn, 2000);//Change turns because human missed.
     };
   }
-  function markMissOnBoard(targetCellRef:number) {
-    for (let miss of computerPlayer.computerBoard.missedShotsTracker) {
-      if (targetCellRef === miss) {
-      gameCellComputerRefs[targetCellRef].current.style.background = "green";
-      compTurnOverlay.current.style.display="flex";
-      setTimeout(computerTurn, 2000)
-      } 
-    }
-  }
+
   function computerTurn() {
-    const randomAttack = Math.floor(Math.random() * 90);
-    readyPlayerOne.humanBoard.receiveAttack(randomAttack);
-    for (let ship of readyPlayerOne.humanBoard.shipYard) {//Loop through ships and then each ships coordinates prop.
-      for (let hit of ship.hitTracker) {
-        gameCellPlayerRefs[hit].current.style.background = "red";
-        if (randomAttack === hit) {
-          setTimeout(computerTurn, 2000);
-          return "Hit"
-        } else {
-          setTimeout(() => compTurnOverlay.current.style.display="none", 1000);
-        }
-      };
-      for (let miss of readyPlayerOne.humanBoard.missedShotsTracker) {
-        gameCellPlayerRefs[miss].current.style.background = "green";
-      } 
-    };
-  }
-
-  const gameCellPlayerRefs: Array<any> = [];
-  for (let n = 0; n < 90; n++) {
-    gameCellPlayerRefs[n] = useRef(0);
-  }
-  const innerGridPlayerArr: Array<JSX.Element> = [];
+    const randomCoordinate = Math.floor(Math.random() * 90);
+    readyPlayerOne.humanBoard.receiveAttack(randomCoordinate);
+    let computerAttack:string = readyPlayerOne.humanBoard.receiveAttack(randomCoordinate);
+    //Loop through ships and then each ships coordinates prop.
+    if (computerAttack === "hit") {
+      playerCellRefs[randomCoordinate].current.style.background = "red";
+      setTimeout(computerTurn, 2500);
+    } else {
+      playerCellRefs[randomCoordinate].current.style.background = "green";
+      setTimeout(() => {
+        compTurnOverlay.current.style.display="none"; 
+        playerTurnOverlay.current.style.display="flex"
+      }, 1000);
+    }
+  };
+  const playerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
-    innerGridPlayerArr.push(
-      <div className={`${i}`} key={i} ref= {gameCellPlayerRefs[i]}></div>);
+    playerBoardCells.push(
+      <div 
+      className={`${i}`} 
+      key={i} 
+      ref= {playerCellRefs[i]}
+      ></div>);
   }
-
-  const gameCellComputerRefs: Array<any> = [];
-  for (let n = 0; n < 90; n++) {
-    gameCellComputerRefs[n] = useRef(0);
-  }
-  const innerGridComputerArr: Array<JSX.Element> = [];
+  
+  const computerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
-    innerGridComputerArr.push(
+    computerBoardCells.push(
       <div 
         className={`${i}`} 
-        ref={gameCellComputerRefs[i]}
-        onClick={attackComputer}
+        ref={computerCellRefs[i]}
+        onClick={humanPlayerTurn}
         key={i} 
       ></div>);
   }
   return (
     <div className="game-board-cell">
       <div className="user-game-board">
-        {innerGridPlayerArr}
+      <div className="player-turn-overlay" ref={playerTurnOverlay}>
+          Your Turn
+      </div>
+        {playerBoardCells}
       </div>
       <div className='comp-game-board'>
         <div className="computer-turn-overlay" ref={compTurnOverlay}>
           Computer Turn
         </div>
-        {innerGridComputerArr}
+        {computerBoardCells}
       </div>
     </div>
   )

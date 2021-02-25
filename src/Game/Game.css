@@ -42,6 +42,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(10,auto);
+  position: relative;
 }
 .user-game-board div {
   border: white solid thin;
@@ -81,7 +82,7 @@
   bottom: 0;
   left: 20px;
 }
-.computer-turn-overlay {
+.computer-turn-overlay, .player-turn-overlay {
   position: absolute;
   background: red;
   height: 100%;
@@ -90,6 +91,10 @@
   display: none;
   text-align: center;
   align-items: center;
+  justify-content: center;
   font-size: 4em;
   color: white;
+}
+.player-turn-overlay {
+  display: flex;
 }
