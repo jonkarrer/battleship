@@ -10,18 +10,30 @@
   display: grid;
   grid-template-rows: auto auto auto;
   height: 100%;
-  width: 90%;
+  width: 80%;
 }
 .boat-count-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-size: 25px;
+}
+.user-boat-count {
+  width: 500px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+.comp-boat-count {
+  width: 500px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 .game-board-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .user-game-board {
   border: red solid thin;
@@ -45,6 +57,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(10,auto);
+  position: relative;
 }
 .comp-game-board div {
   border: white solid thin;
@@ -67,4 +80,16 @@
   position: absolute;
   bottom: 0;
   left: 20px;
+}
+.computer-turn-overlay {
+  position: absolute;
+  background: red;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: none;
+  text-align: center;
+  align-items: center;
+  font-size: 4em;
+  color: white;
 }

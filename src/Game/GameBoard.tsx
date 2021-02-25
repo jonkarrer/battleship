@@ -4,14 +4,16 @@ import {humanPlayer} from '../GameProvider';
 const ComputerBoard = () => {
   let computerPlayer:Computer;
   let readyPlayerOne = humanPlayer();
+  let compTurnOverlay:any = useRef(0);
+
   useEffect(() => {
     computerPlayer = new Computer();
     computerPlayer.initComputerPlayer();
   });
+
   const attackComputer = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
     computerPlayer.computerBoard.receiveAttack(targetCellRef);
-    console.log(readyPlayerOne.humanBoard.shipYard);
     markHitOnBoard(targetCellRef);
     markMissOnBoard(targetCellRef);
   }
@@ -28,7 +30,8 @@ const ComputerBoard = () => {
     for (let miss of computerPlayer.computerBoard.missedShotsTracker) {
       if (targetCellRef === miss) {
       gameCellComputerRefs[targetCellRef].current.style.background = "green";
-      computerTurn();
+      compTurnOverlay.current.style.display="flex";
+      setTimeout(computerTurn, 2000)
       } 
     }
   }
@@ -38,6 +41,12 @@ const ComputerBoard = () => {
     for (let ship of readyPlayerOne.humanBoard.shipYard) {//Loop through ships and then each ships coordinates prop.
       for (let hit of ship.hitTracker) {
         gameCellPlayerRefs[hit].current.style.background = "red";
+        if (randomAttack === hit) {
+          setTimeout(computerTurn, 2000);
+          return "Hit"
+        } else {
+          setTimeout(() => compTurnOverlay.current.style.display="none", 1000);
+        }
       };
       for (let miss of readyPlayerOne.humanBoard.missedShotsTracker) {
         gameCellPlayerRefs[miss].current.style.background = "green";
@@ -64,7 +73,7 @@ const ComputerBoard = () => {
     innerGridComputerArr.push(
       <div 
         className={`${i}`} 
-        ref= {gameCellComputerRefs[i]}
+        ref={gameCellComputerRefs[i]}
         onClick={attackComputer}
         key={i} 
       ></div>);
@@ -74,13 +83,13 @@ const ComputerBoard = () => {
       <div className="user-game-board">
         {innerGridPlayerArr}
       </div>
-      <div className="turn-tracker">Your Turn</div>
       <div className='comp-game-board'>
+        <div className="computer-turn-overlay" ref={compTurnOverlay}>
+          Computer Turn
+        </div>
         {innerGridComputerArr}
       </div>
     </div>
-    
-    
   )
 }
 
