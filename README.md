@@ -282,8 +282,6 @@ npm run deploy
 
 ### For later
 
- 1. Reduc ship count when boats sink
+ 1. When game ends, make screen appear
 
- 2. Make the ship checker fire, and if all boats are sunk declare loss
-
- 3. Make set up to game transition better
+ 2. Make set up to game transition better

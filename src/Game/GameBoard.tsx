@@ -3,7 +3,7 @@ import Computer from '../factories/computerFactory';
 import {humanPlayer} from '../GameProvider';
 
 const ComputerBoard: React.FC = () => {
-  
+
   let computerPlayer:Computer;
   let readyPlayerOne = humanPlayer();
   let compTurnOverlay:any = useRef(0);
@@ -56,7 +56,8 @@ const ComputerBoard: React.FC = () => {
         compTurnOverlay.current.style.display="none"; 
         playerTurnOverlay.current.style.display="flex"
       }, 1000);
-    }
+
+    };
   };
   const [playerShipsLeft, setPlayerSunkBoats] = useState(5);
   function countSunkPlayerShips() {
@@ -83,9 +84,9 @@ const ComputerBoard: React.FC = () => {
       for(let ship of computerPlayer.computerBoard.shipYard) {
         if (ship.hasSank) {
         setCompSunkBoats(computerShipsLeft - 1); 
-        } 
+        };
       };
-    }
+    };
   }
 
   const playerBoardCells: Array<JSX.Element> = [];
@@ -97,7 +98,7 @@ const ComputerBoard: React.FC = () => {
       ref= {playerCellRefs[i]}
       ></div>);
   }
-
+  
   const computerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     computerBoardCells.push(
@@ -111,7 +112,7 @@ const ComputerBoard: React.FC = () => {
   return (
     <React.Fragment>
     <div className="boat-count-cell">
-      <div className="user-boat-count">Player Boats: {3}</div>
+      <div className="user-boat-count">Player Boats: {playerShipsLeft}</div>
       <div className="comp-boat-count">Computer Boats: {computerShipsLeft}</div>
     </div>
     <div className="game-board-cell">
