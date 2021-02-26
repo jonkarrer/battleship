@@ -41,6 +41,13 @@ const ComputerBoard: React.FC = () => {
     };
     countSunkComputerShips();
   }
+  function countSunkComputerShips() {
+    let computerShipCount:any = computerPlayer.computerBoard.countSunkShips();
+    computerShipCount;
+    if (computerShipCount === true) {
+      endGame();
+    };
+  }
 
   function computerAttackMaker() {
     let randomCoord:number = Math.floor(Math.random() * 89);
@@ -57,18 +64,9 @@ const ComputerBoard: React.FC = () => {
     checkAttack();
     return randomCoord;
   }
-  function countSunkComputerShips() {
-    let computerShipCount:any = computerPlayer.computerBoard.countSunkShips();
-    computerShipCount;
-    if (computerShipCount === true) {
-      endGame();
-    };
-  }
-
   function computerTurn() {
     const randomCoordinate = computerAttackMaker();
     if (readyPlayerOne.humanBoard.receiveAttack(randomCoordinate) === "hit") {
-      countSunkPlayerShips();
       playerCellRefs[randomCoordinate].current.style.background = "red";
       setTimeout(computerTurn, 1000);
     } else {
@@ -78,6 +76,7 @@ const ComputerBoard: React.FC = () => {
         playerTurnOverlay.current.style.display="flex"
       }, 1000);
     }; 
+    countSunkPlayerShips();
   }
   function countSunkPlayerShips() {
     let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();

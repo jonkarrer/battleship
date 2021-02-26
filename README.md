@@ -310,4 +310,6 @@ npm run deploy
 
 ### For later
 
-1. Make mobile.
+1. Make computer smarter
+
+2. Bug test

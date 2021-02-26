@@ -20,16 +20,6 @@ class GameBoard {
     //Replace the -1 values in grid with the values in ship coordinatesArr "horizontal"
     this.grid.splice(coordinatesArr[0],coordinatesArr.length, ...coordinatesArr);
   }
-  placeVerticalShip(lengthOfShip:number, coordinatesArr:Array<number>) {
-    let placedShip = new Ship(lengthOfShip, coordinatesArr);
-    this.shipYard.push(placedShip);
-    //splice values at every 10th index
-    let n = 0; //for splice increments
-    for (let i=0; i < (lengthOfShip * 10); i += 10) {
-      this.grid.splice(coordinatesArr[n], 1, coordinatesArr[n]);
-      n += 1;
-    }
-  }
   receiveAttack(attackPosition:number) {
     //We know a ship is here because the index value is higher than -1.
     if(this.grid.indexOf(attackPosition) > -1) {
