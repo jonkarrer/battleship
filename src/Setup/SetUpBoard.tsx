@@ -1,10 +1,8 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {humanPlayer, changeGameLevel} from '../GameProvider';
 
-interface SetUpBoardProps {
-  axis: string;
-}
-const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
+
+const SetUpBoard: React.FC = () => {
   const startGame = changeGameLevel();
   const readyPlayerOne = humanPlayer();
   const [eventHoverColor, setEventColor] = useState('rgba(100, 100, 100, .6)');
@@ -70,7 +68,7 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
   const placeShipOnTarget = (evt:any) => {
     evt.target.style.pointerEvents = "none";
     const targetCellRef = parseInt(evt.target.className);
-    readyPlayerOne.placeShip(axis, targetCellRef, shipLength);
+    readyPlayerOne.placeShip(targetCellRef, shipLength);
     colorInShipOnBoard(targetCellRef);
     setEventColor('red'); //Place red ship
   }

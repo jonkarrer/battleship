@@ -13,11 +13,11 @@ const ComputerBoard: React.FC = () => {
   const playerCellRefs: Array<any> = [];
   for (let n = 0; n < 90; n++) {
     playerCellRefs[n] = useRef(0);
-  }
+  };
   const computerCellRefs: Array<any> = [];
   for (let n = 0; n < 90; n++) {
     computerCellRefs[n] = useRef(0);
-  }
+  };
 
   let computerPlayer:Computer;
   
@@ -27,7 +27,6 @@ const ComputerBoard: React.FC = () => {
   });
 
   const humanTurn = (evt:any) => {
-    console.log(readyPlayerOne.humanBoard.shipYard);
     const targetCellRef = parseInt(evt.target.className);
     let humanAttack:string = computerPlayer.computerBoard.receiveAttack(targetCellRef);
     humanAttack;
@@ -44,7 +43,7 @@ const ComputerBoard: React.FC = () => {
     countSunkComputerShips();
   }
 
-  function attackMaker() {
+  function computerAttackMaker() {
     let randomCoord:number = Math.floor(Math.random() * 89);
     const checkAttack = () => {
       for (let coord of readyPlayerOne.humanBoard.missedShotsTracker) {
@@ -53,30 +52,27 @@ const ComputerBoard: React.FC = () => {
         } else {
           randomCoord =  Math.floor(Math.random() * 89);
           checkAttack();
-        }
-      }
+        };
+      };
     }
     checkAttack();
     return randomCoord;
   }
 
   function computerTurn() {
-    const randomCoordinate = attackMaker();
-    console.log(readyPlayerOne.humanBoard.shipYard);
-    console.log(readyPlayerOne.humanBoard.missedShotsTracker);
+    const randomCoordinate = computerAttackMaker();
     if (readyPlayerOne.humanBoard.receiveAttack(randomCoordinate) === "hit") {
       countSunkPlayerShips();
       playerCellRefs[randomCoordinate].current.style.background = "red";
-      setTimeout(computerTurn, 500);
+      setTimeout(computerTurn, 1000);
     } else {
       playerCellRefs[randomCoordinate].current.style.background = "green";
       setTimeout(() => {
         compTurnOverlay.current.style.display="none"; 
         playerTurnOverlay.current.style.display="flex"
-      }, 500);
-    };
-    
-  };
+      }, 1000);
+    }; 
+  }
 
   function countSunkPlayerShips() {
     let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();

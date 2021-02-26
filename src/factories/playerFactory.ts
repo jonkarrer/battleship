@@ -9,26 +9,13 @@ class Player {
   initHumanPlayer() {
     this.humanBoard.buildGrid();
   }
-  placeShip(orientation:string, someDomSelection:number, whichBoatLength:number) {
-    if (orientation === 'Vertical') {
-      this.placeShipVertical(someDomSelection, whichBoatLength);
-    } else { 
-      this.placeShipHorizontal(someDomSelection, whichBoatLength);
-    }
-  }
-  placeShipHorizontal(someDomSelection:number, whichBoatLength:number) {
+  placeShip(someDomSelection:number, whichBoatLength:number) {
     let coordinatesArr:Array<number>=[];
     for (let i=0; i < whichBoatLength; i++) {
       coordinatesArr.push(someDomSelection + i);
     }
     this.humanBoard.placeHorizontalShip(whichBoatLength,coordinatesArr);//will call gameboard and pass length and array as arguments
   }
-  placeShipVertical(someDomSelection:number, whichBoatLength:number) {
-    let coordinatesArr:Array<number>=[];
-    for (let i=0; i < (whichBoatLength * 10); i += 10) {
-      coordinatesArr.push(someDomSelection + i);
-    }
-    this.humanBoard.placeVerticalShip(whichBoatLength,coordinatesArr);
-  }
+
 }
 export default Player;
