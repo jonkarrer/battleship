@@ -1,57 +1,126 @@
-.Home {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
+@media screen and (min-width: 1000px) {
+  .Home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+  .home-menu-grid {
+    display: grid;
+    grid-template-rows: 25% 25% auto;
+    height: 80vh;
+  }
+  .new-game-cell {
+    font-size: 40px;
+    text-align: center;
+    z-index: 1;
+  }
+  .rules-cell {
+    font-size: 40px;
+    text-align: center;
+    z-index: 1;
+  }
+  .new-game-cell, .rules-cell:hover {
+    cursor: pointer;
+  }
+  .battleship-cell {
+    font-size: 75px;
+    z-index: 1;
+  }
+  .source-code-link a {
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    right: 20px;
+    font-size: 30px;
+    color: grey;
+  }
+  .boat-1-homepage {
+    position: absolute;
+    left: 20px;
+    bottom: 30px;
+  }
+  .boat-2-homepage {
+    position: absolute;
+    left: 30%;
+    top: 0;
+  }
+  .boat-2-homepage img {
+    height: 200px;
+    width: 200px;
+  }
+  .boat-3-homepage {
+    position: absolute;
+    right: 10px;
+    top: 10%;
+  }
 }
-.home-menu-grid {
-  display: grid;
-  grid-template-rows: 25% 25% auto;
-  height: 80vh;
-}
-.new-game-cell {
-  font-size: 45px;
-  text-align: center;
-  z-index: 1;
-}
-.rules-cell {
-  font-size: 45px;
-  text-align: center;
-  z-index: 1;
-}
-.new-game-cell, .rules-cell:hover {
-  cursor: pointer;
-}
-.battleship-cell {
-  font-size: 75px;
-  text-align: center;
-  z-index: 1;
-}
-.source-code-link a {
-  position: absolute;
-  text-decoration: none;
-  top: 0;
-  right: 20px;
-  font-size: 30px;
-  color: grey;
-}
-.boat-1-homepage {
-  position: absolute;
-  left: 0;
-}
-.boat-2-homepage {
-  position: absolute;
-  left: 30%;
-  top: 0;
-}
-.boat-2-homepage img {
-  height: 200px;
-  width: 200px;
-}
-.boat-3-homepage {
-  position: absolute;
-  right: 0;
-  top: 10%;
+@media screen and (max-width: 1000px) {
+  .Home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  .home-menu-grid {
+    display: grid;
+    grid-template-rows: 30% 30% auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 1;
+  }
+  .new-game-cell {
+    font-size: 30px;
+    text-align: center;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .rules-cell {
+    font-size: 30px;
+    text-align: center;
+    z-index: 1;
+  }
+  .new-game-cell, .rules-cell:hover {
+    cursor: pointer;
+  }
+  .battleship-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9vw;
+    font-weight: bold;
+    z-index: 1;
+  }
+  .source-code-link a {
+    position: absolute;
+    text-decoration: none;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: white;
+    z-index: 3;
+  }
+  .boat-1-homepage {
+    position: absolute;
+    left: 20px;
+    bottom: 30px;
+  }
+
+  .boat-2-homepage {
+    display: none;
+  }
+  .boat-2-homepage img {
+    display: none;
+  }
+  .boat-3-homepage {
+    display: none;
+  }
 }

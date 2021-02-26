@@ -1,25 +1,12 @@
 import React from "../../_snowpack/pkg/react.js";
+import GameBoard from "./GameBoard.js";
 import "./Game.css.proxy.js";
 const Game = () => {
   return /* @__PURE__ */ React.createElement("div", {
     className: "Game"
   }, /* @__PURE__ */ React.createElement("section", {
     className: "game-grid"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "boat-count-cell"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "user-boat-count"
-  }, "Player Boats: 10"), /* @__PURE__ */ React.createElement("div", {
-    className: "comp-boat-count"
-  }, "Computer Boats: 10")), /* @__PURE__ */ React.createElement("div", {
-    className: "game-board-cell"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "user-game-board"
-  }, "Big user square"), /* @__PURE__ */ React.createElement("div", {
-    className: "turn-tracker"
-  }, "Your Turn"), /* @__PURE__ */ React.createElement("div", {
-    className: "comp-game-board"
-  }, "Big comp square")), /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React.createElement(GameBoard, null), /* @__PURE__ */ React.createElement("div", {
     className: "fire-cannons-cell"
   }, "Fire Cannons")), /* @__PURE__ */ React.createElement("div", {
     className: "boat-1-game"

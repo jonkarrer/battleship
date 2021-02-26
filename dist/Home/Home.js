@@ -1,4 +1,5 @@
 import React from "../../_snowpack/pkg/react.js";
+import {changeGameLevel} from "../GameProvider.js";
 import "./Home.css.proxy.js";
 const Home = () => {
   return /* @__PURE__ */ React.createElement("div", {
@@ -6,7 +7,8 @@ const Home = () => {
   }, /* @__PURE__ */ React.createElement("section", {
     className: "home-menu-grid"
   }, /* @__PURE__ */ React.createElement("div", {
-    className: "new-game-cell"
+    className: "new-game-cell",
+    onClick: changeGameLevel()
   }, /* @__PURE__ */ React.createElement("h2", null, "New Game")), /* @__PURE__ */ React.createElement("div", {
     className: "rules-cell"
   }, /* @__PURE__ */ React.createElement("h2", null, "Rules")), /* @__PURE__ */ React.createElement("div", {
