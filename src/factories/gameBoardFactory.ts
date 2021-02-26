@@ -37,6 +37,7 @@ class GameBoard {
         for(let coordinate of ship.coordinates) {
           if (coordinate === attackPosition) {
             ship.hasBeenHit(attackPosition);//Tell the ship it has been hit
+            this.missedShotsTracker.push(attackPosition);
             return "hit";
           };
         };

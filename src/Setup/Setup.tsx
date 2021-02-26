@@ -18,7 +18,7 @@ const Setup: React.FC = () => {
     <div className="Setup">
       <section className="setup">
         <div className="game-cell">
-          <GameBoard axis = {shipPlacementAxis}/>
+          <GameBoard axis = {shipPlacementAxis} />
         </div>
         <div className="placeships-cell">Place Ships</div>
         <div className="options-cell">

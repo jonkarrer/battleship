@@ -44,13 +44,24 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
   },[shipLength]);
   
   const mouseEnterCell = (evt:any) => {
-    const targetCellRef = parseInt(evt.target.className);
-    if (gameCellRefs[targetCellRef].current.style.background === "red") {
-      return
+    if ( axis === 'Horizontal') {
+      const targetCellRef = parseInt(evt.target.className);
+      if (gameCellRefs[targetCellRef].current.style.background === "red") {
+        return
+      } else {
+        for (let i=0; i < shipLength; i++) {
+          gameCellRefs[targetCellRef + i].current.style.background = "green";
+        }; 
+      };
     } else {
-      for (let i=0; i < shipLength; i++) {
-        gameCellRefs[targetCellRef + i].current.style.background = "green";
-      } 
+        const targetCellRef = parseInt(evt.target.className);
+        if (gameCellRefs[targetCellRef].current.style.background === "red") {
+          return
+        } else {
+          for (let i=0; i < shipLength; i++) {
+            gameCellRefs[targetCellRef + i].current.style.background = "blue";
+          }; 
+        };
     }
   }
 
@@ -70,9 +81,7 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
   const placeShipOnTarget = (evt:any) => {
     evt.target.style.pointerEvents = "none";
     const targetCellRef = parseInt(evt.target.className);
-
     readyPlayerOne.placeShip(axis, targetCellRef, shipLength);
-
     colorInShipOnBoard(targetCellRef);
     setEventColor('red'); //Place red ship
   }
@@ -123,7 +132,9 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
         // Color i number squares to the right of click event
         gameCellRefs[targetCellRef + i ].current.style.background = "red";
         // i+1 turns off the square behind the ship. Prevent overlap. 
-        gameCellRefs[targetCellRef + (i + 1)].current.style.pointerEvents = "none";
+        gameCellRefs[0].current.style.pointerEvents = "none";
+        gameCellRefs[1].current.style.pointerEvents = "none";
+        gameCellRefs[2].current.style.pointerEvents = "none";
       }
     }
     function bottomRightPlacement() {

@@ -280,6 +280,34 @@ npm run deploy
 
 7. Lastly I needed to change the state of the event color. Why? I had conflicts with mouseOut event coloring the ships back to grey. I clicked, then moved the mouse and the color would change. This changes the mouseOut color to the color I needed the placed ship to be so it does not change to grey.
 
+### Make an algorithm for the computer attack
+
+1. The computer needs to take a random number from player board and send attack.
+
+2. The attack cannot be one that has already been taken. This would cause a double shot.
+
+3. Here is the solution I developed
+
+    ```javascript
+        function attackMaker() {
+            let randomCoord:number = Math.floor(Math.random() * 89);
+            const checkAttack = () => {
+                for (let coord of readyPlayerOne.humanBoard.missedShotsTracker) {
+                    if (randomCoord != coord) {
+                        continue
+                    } else {
+                    randomCoord =  Math.floor(Math.random() * 89);
+                        checkAttack();
+                    }
+                }
+            }
+            checkAttack();
+            return randomCoord;
+        }
+    ```
+
+4. The randomCoord is then used in the comuterTurn funtion to apply the attack properly.
+
 ### For later
 
  1. When game ends, make screen appear
@@ -289,3 +317,5 @@ npm run deploy
  3. Make vertical placements work
 
  4. Make computer player place random ships
+
+ 5. computer is making duplicate attacks
