@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {changeGameLevel} from '../GameProvider';
 import GameBoard from './SetUpBoard';
 import './Setup.css'
 

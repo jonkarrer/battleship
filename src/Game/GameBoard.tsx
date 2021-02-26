@@ -20,7 +20,6 @@ const ComputerBoard: React.FC = () => {
   };
 
   let computerPlayer:Computer;
-  
   useEffect(() => {
     computerPlayer = new Computer();
     computerPlayer.initComputerPlayer();
@@ -37,8 +36,8 @@ const ComputerBoard: React.FC = () => {
       setTimeout(() => {
         compTurnOverlay.current.style.display="flex"; 
         playerTurnOverlay.current.style.display="none";
-      }, 300);
-      setTimeout(computerTurn, 500);//Change turns because human missed.
+      }, 200);
+      setTimeout(computerTurn, 1000);//Change turns because human missed.
     };
     countSunkComputerShips();
   }
@@ -54,9 +53,16 @@ const ComputerBoard: React.FC = () => {
           checkAttack();
         };
       };
-    }
+    };
     checkAttack();
     return randomCoord;
+  }
+  function countSunkComputerShips() {
+    let computerShipCount:any = computerPlayer.computerBoard.countSunkShips();
+    computerShipCount;
+    if (computerShipCount === true) {
+      endGame();
+    };
   }
 
   function computerTurn() {
@@ -73,7 +79,6 @@ const ComputerBoard: React.FC = () => {
       }, 1000);
     }; 
   }
-
   function countSunkPlayerShips() {
     let playerShipCount:boolean = readyPlayerOne.humanBoard.countSunkShips();
     playerShipCount;
@@ -82,14 +87,7 @@ const ComputerBoard: React.FC = () => {
       endGame();
     };
   }
-  function countSunkComputerShips() {
-    let computerShipCount:any = computerPlayer.computerBoard.countSunkShips();
-    computerShipCount;
-    if (computerShipCount === true) {
-      endGame();
-    };
-  }
-
+  
   const playerBoardCells: Array<JSX.Element> = [];
   for (let i=0; i < 90; i++) {
     playerBoardCells.push(
@@ -111,20 +109,20 @@ const ComputerBoard: React.FC = () => {
   }
   return (
     <React.Fragment>
-    <div className="game-board-cell">
-      <div className="user-game-board">
-      <div className="player-turn-overlay" ref={playerTurnOverlay}>
-          Your Turn
-      </div>
-        {playerBoardCells}
-      </div>
-      <div className='comp-game-board'>
-        <div className="computer-turn-overlay" ref={compTurnOverlay}>
-          Computer Turn
+      <div className="game-board-cell">
+        <div className="user-game-board">
+          <div className="player-turn-overlay" ref={playerTurnOverlay}>
+            Your Turn
+          </div>
+          {playerBoardCells}
         </div>
-        {computerBoardCells}
+        <div className='comp-game-board'>
+          <div className="computer-turn-overlay" ref={compTurnOverlay}>
+            Computer Turn
+          </div>
+          {computerBoardCells}
+        </div>
       </div>
-    </div>
     </React.Fragment>
   )
 }

@@ -8,7 +8,7 @@ const SetUpBoard: React.FC = () => {
   const [eventHoverColor, setEventColor] = useState('rgba(100, 100, 100, .6)');
   const [shipLength, setShipLength] = useState(4);
 
-  //need multiple varaible names for useRef hook to append to game cells. 
+  //Need multiple varaible names for useRef hooks, then append to 90 game cells. 
   const gameCellRefs: Array<any> = [];
   for (let n = 0; n < 90; n++) {
     gameCellRefs[n] = useRef(0);
@@ -121,8 +121,13 @@ const SetUpBoard: React.FC = () => {
         // Color i number squares to the right of click event
         gameCellRefs[targetCellRef + i ].current.style.background = "red";
         gameCellRefs[targetCellRef + i ].current.style.pointerEvents = "none";
-        gameCellRefs[targetCellRef + (i + 1) ].current.style.background = "none";
-        // i+1 turns off the square behind the ship. Prevent overlap. 
+        //Turn off one cell to the right of ship
+        gameCellRefs[targetCellRef + (i + 1) ].current.style.pointerEvents = "none";
+        //Turn off all corner squares 
+        gameCellRefs[0].current.style.pointerEvents = "none";
+        gameCellRefs[1].current.style.pointerEvents = "none";
+        gameCellRefs[2].current.style.pointerEvents = "none";
+        gameCellRefs[3].current.style.pointerEvents = "none";
       }
     }
     function bottomRightPlacement() {
@@ -143,6 +148,7 @@ const SetUpBoard: React.FC = () => {
     }
     reduceShipLength();
   }
+  let controlWholeBoard:any = useRef(0);
   let allThreeShipsPlaced = useRef(1);
   function reduceShipLength() {
     if (shipLength === 4) {
@@ -154,6 +160,7 @@ const SetUpBoard: React.FC = () => {
           allThreeShipsPlaced.current = allThreeShipsPlaced.current + 1;
         }
     } else if (shipLength === 2) {
+      controlWholeBoard.current.style.display = 'flex';
       setTimeout(startGame, 2000)
     } 
 
@@ -173,6 +180,7 @@ const SetUpBoard: React.FC = () => {
   }
   return (
     <div className="game-board">
+      <div className="startGame" ref={controlWholeBoard}>Starting Game</div>
       {innerGridArr}
     </div>
   )
