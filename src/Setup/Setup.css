@@ -1,102 +1,102 @@
 @media screen and (min-width: 1000px) {
-.Setup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-}
-.setup {
-  display: grid;
-  grid-template-rows: auto auto;
-  height: 100%;
-  width: 90vw;
-}
-.game-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.game-board {
-  border: red solid thin;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(10,auto);
-  position: relative;
-}
-.game-board div {
-  border: white solid thin;
-  background: rgba(100, 100, 100, .6);
-}
-.game-board div:hover {
-  background: hsla(20, 100%, 50%, .5);
-}
+  .Setup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+  .setup {
+    display: grid;
+    grid-template-rows: auto auto;
+    height: 100%;
+    width: 90vw;
+  }
+  .game-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .game-board {
+    border: red solid thin;
+    height: 500px;
+    width: 500px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    position: relative;
+  }
+  .game-board div {
+    border: white solid thin;
+    background: rgba(100, 100, 100, .6);
+  }
+  .game-board div:hover {
+    background: hsla(20, 100%, 50%, .5);
+  }
 
-.placeships-cell {
-  font-size: 75px;
-  text-align: center;
-  z-index: 1;
-}
-.options-cell {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 30px;
-  z-index: 1;
-}
-.options-cell div:hover {
-  cursor: pointer;
-}
-.boat-1-setup {
-  position: absolute;
-  left: 40px;
-}
-.boat-1-setup img {
-  height: 400px;
-  width: 400px;
-}
-.boat-2-setup {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-}
-.boat-2-setup img {
-  height: 250px;
-  width: 250px;
-}
-.boat-3-setup {
-  position: absolute;
-  bottom: 0;
-  right: 10%;
-}
-.boat-3-setup img {
-  height: 450px;
-  width: 450px;
-}
-.boat-4-setup {
-  position: absolute;
-  top: 0;
-  left: 20%;
-}
-.boat-4-setup img {
-  height: 150px;
-  width: 150px;
-}
-.startGame {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: black;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 5em;
-  color: white;
-}
+  .placeships-cell {
+    font-size: 75px;
+    text-align: center;
+    z-index: 1;
+  }
+  .options-cell {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 30px;
+    z-index: 1;
+  }
+  .options-cell div:hover {
+    cursor: pointer;
+  }
+  .boat-1-setup {
+    position: absolute;
+    left: 40px;
+  }
+  .boat-1-setup img {
+    height: 400px;
+    width: 400px;
+  }
+  .boat-2-setup {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+  }
+  .boat-2-setup img {
+    height: 250px;
+    width: 250px;
+  }
+  .boat-3-setup {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+  }
+  .boat-3-setup img {
+    height: 450px;
+    width: 450px;
+  }
+  .boat-4-setup {
+    position: absolute;
+    top: 0;
+    left: 20%;
+  }
+  .boat-4-setup img {
+    height: 150px;
+    width: 150px;
+  }
+  .startGame {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: black;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 5em;
+    color: white;
+  }
 }
 @media screen and (max-width: 1000px) {
   .Setup {
@@ -107,78 +107,77 @@
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, .6);
-}
-.setup {
-  display: grid;
-  height: 100%;
-  width: 95vw;
-  
-}
-.game-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.game-board {
-  border: red solid thin;
-  height: 350px;
-  width: 350px;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(10,auto);
-  position: relative;
-}
-.game-board div {
-  border: white solid thin;
-  background: rgba(100, 100, 100, .6);
-}
-.game-board div:hover {
-  background: hsla(20, 100%, 50%, .5);
-}
-.placeships-cell {
-  font-size: 60px;
-  text-align: center;
-  z-index: 1;
-}
-.options-cell {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 30px;
-  z-index: 1;
-}
-.options-cell div:hover {
-  cursor: pointer;
-}
-.boat-1-setup {
-  display: none;
-}
+  }
+  .setup {
+    display: grid;
+    height: 100%;
+    width: 95vw;
+  }
+  .game-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .game-board {
+    border: red solid thin;
+    height: 350px;
+    width: 350px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    position: relative;
+  }
+  .game-board div {
+    border: white solid thin;
+    background: rgba(100, 100, 100, .6);
+  }
+  .game-board div:hover {
+    background: hsla(20, 100%, 50%, .5);
+  }
+  .placeships-cell {
+    font-size: 60px;
+    text-align: center;
+    z-index: 1;
+  }
+  .options-cell {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 30px;
+    z-index: 1;
+  }
+  .options-cell div:hover {
+    cursor: pointer;
+  }
+  .boat-1-setup {
+    display: none;
+  }
 
-.boat-2-setup {
-  position: absolute;
-  bottom: 0;
-  right: 40px;
-  z-index: -1;
-}
+  .boat-2-setup {
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+    z-index: -1;
+  }
 
-.boat-3-setup {
-  display: none;
-}
+  .boat-3-setup {
+    display: none;
+  }
 
-.boat-4-setup {
-  display: none;
-}
+  .boat-4-setup {
+    display: none;
+  }
 
-.startGame {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: black;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 5em;
-  color: white;
-}
+  .startGame {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: black;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 5em;
+    color: white;
+  }
 }

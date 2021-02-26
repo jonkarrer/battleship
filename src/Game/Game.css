@@ -1,100 +1,202 @@
-.Game {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
+@media screen and (min-width: 1000px) {
+  .Game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+  .game-grid {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    height: 100%;
+    width: 80%;
+  }
+  .boat-count-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 25px;
+  }
+  .user-boat-count {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .comp-boat-count {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .game-board-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .user-game-board {
+    border: red solid thin;
+    height: 500px;
+    width: 500px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    position: relative;
+  }
+  .user-game-board div {
+    border: white solid thin;
+    background: rgba(100, 100, 100, .6);
+  }
+  .turn-tracker {
+    font-size: 25px;
+  }
+  .comp-game-board {
+    border: red solid thin;
+    height: 500px;
+    width: 500px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    position: relative;
+  }
+  .comp-game-board div {
+    border: white solid thin;
+    background: rgba(100, 100, 100, .6);
+  }
+  .comp-game-board div:hover {
+    background: hsla(20, 100%, 50%, .5);
+  }
+  .fire-cannons-cell {
+    font-size: 75px;
+    text-align: center;
+    z-index: 1;
+  }
+  .boat-1-game {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
+  .boat-2-game {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+  }
+  .computer-turn-overlay, .player-turn-overlay {
+    position: absolute;
+    background: red;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    color: white;
+  }
+  .player-turn-overlay {
+    display: flex;
+  }
 }
-.game-grid {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  height: 100%;
-  width: 80%;
-}
-.boat-count-cell {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 25px;
-}
-.user-boat-count {
-  width: 500px;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-}
-.comp-boat-count {
-  width: 500px;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-}
-.game-board-cell {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.user-game-board {
-  border: red solid thin;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(10,auto);
-  position: relative;
-}
-.user-game-board div {
-  border: white solid thin;
-  background: rgba(100, 100, 100, .6);
-}
-.turn-tracker {
-  font-size: 25px;
-}
-.comp-game-board {
-  border: red solid thin;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(10,auto);
-  position: relative;
-}
-.comp-game-board div {
-  border: white solid thin;
-  background: rgba(100, 100, 100, .6);
-}
-.comp-game-board div:hover {
-  background: hsla(20, 100%, 50%, .5);
-}
-.fire-cannons-cell {
-  font-size: 75px;
-  text-align: center;
-  z-index: 1;
-}
-.boat-1-game {
-  position: absolute;
-  bottom: 0;
-  right: 20px;
-}
-.boat-2-game {
-  position: absolute;
-  bottom: 0;
-  left: 20px;
-}
-.computer-turn-overlay, .player-turn-overlay {
-  position: absolute;
-  background: red;
-  height: 100%;
-  width: 100%;
-  z-index: 2;
-  display: none;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  font-size: 4em;
-  color: white;
-}
-.player-turn-overlay {
-  display: flex;
+@media screen and (max-width: 1000px) {
+  .Game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .6);
+  }
+  .game-grid {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    height: 100%;
+    width: 100vw;
+  }
+  .boat-count-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 25px;
+  }
+  .user-boat-count {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .comp-boat-count {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .game-board-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .user-game-board {
+    border: red solid thin;
+    height: 170px;
+    width: 170px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    position: relative;
+  }
+  .user-game-board div {
+    border: white solid thin;
+    background: rgba(100, 100, 100, .6);
+  }
+  .comp-game-board {
+    border: red solid thin;
+    height: 330px;
+    width: 330px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    position: relative;
+  }
+  .comp-game-board div {
+    border: white solid thin;
+    background: rgba(100, 100, 100, .6);
+  }
+  .comp-game-board div:hover {
+    background: hsla(20, 100%, 50%, .5);
+  }
+  .fire-cannons-cell {
+    font-size: 50px;
+    text-align: center;
+    z-index: 1;
+  }
+  .boat-1-game {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    right: -100px;
+  }
+  .boat-2-game {
+    display: none;
+  }
+  .computer-turn-overlay, .player-turn-overlay {
+    position: absolute;
+    background: red;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    color: white;
+  }
+  .player-turn-overlay {
+    display: flex;
+  }
 }
