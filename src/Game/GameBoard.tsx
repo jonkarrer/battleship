@@ -27,6 +27,7 @@ const ComputerBoard: React.FC = () => {
   });
 
   const humanTurn = (evt:any) => {
+    console.log(readyPlayerOne.humanBoard.shipYard);
     const targetCellRef = parseInt(evt.target.className);
     let humanAttack:string = computerPlayer.computerBoard.receiveAttack(targetCellRef);
     humanAttack;
@@ -42,7 +43,7 @@ const ComputerBoard: React.FC = () => {
     };
     countSunkComputerShips();
   }
-  
+
   function attackMaker() {
     let randomCoord:number = Math.floor(Math.random() * 89);
     const checkAttack = () => {

@@ -9,7 +9,7 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
   const readyPlayerOne = humanPlayer();
   const [eventHoverColor, setEventColor] = useState('rgba(100, 100, 100, .6)');
   const [shipLength, setShipLength] = useState(4);
-  const [changeCellTurn, setCellTurn] = useState(4);
+
   //need multiple varaible names for useRef hook to append to game cells. 
   const gameCellRefs: Array<any> = [];
   for (let n = 0; n < 90; n++) {
@@ -40,114 +40,30 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
         };
       };
     };
-    function turnOffHorizontalCells() {
-      for (let i=7; i < 90; i += 10) {
-        gameCellRefs[i].current.style.pointerEvents = "auto";
-      };
-      for (let i=8; i < 90; i += 10) {
-        gameCellRefs[i].current.style.pointerEvents = "auto";
-      };
-      for (let i=9; i < 90; i += 10) {
-        gameCellRefs[i].current.style.pointerEvents = "auto";
-      };
-      if (shipLength === 4) {
-        //turn off columns' 7-9 cells' event listeners off
-        for (let i=60; i < 90; i ++) {
-          gameCellRefs[i].current.style.pointerEvents = "none";
-        };
-      } else if (shipLength === 3) {
-        for (let i=60; i < 90; i ++) {
-          gameCellRefs[i].current.style.pointerEvents = "auto";
-        };
-        for (let i=70; i < 90; i ++) {
-          gameCellRefs[i].current.style.pointerEvents = "none";
-        };
-      } else if (shipLength === 2) {
-        //Turn column 8 back on
-        for (let i=60; i < 90; i ++) {
-          gameCellRefs[i].current.style.pointerEvents = "auto";
-        };
-        for (let i=80; i < 90; i ++) {
-          gameCellRefs[i].current.style.pointerEvents = "none";
-        };
-      };
-    }
-    if (axis === "Horizontal") {
-      turnOffCellsOnEdgeOfBoard();
-    } else {
-      turnOffHorizontalCells();
-    };
-    
-  },[shipLength, changeCellTurn]);
+    turnOffCellsOnEdgeOfBoard();
+  },[shipLength]);
   
   const mouseEnterCell = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
-    setCellTurn(changeCellTurn + 1);
-    if ( axis === 'Horizontal') {
-      if (gameCellRefs[targetCellRef].current.style.background === "red") {
+    if (gameCellRefs[targetCellRef].current.style.background === "red") {
         return
-      } else {
+    } else {
         for (let i=0; i < shipLength; i++) {
           gameCellRefs[targetCellRef + i].current.style.background = "green";
         }; 
       };
-    } else {
-      if (shipLength === 4) {
-        if (targetCellRef < 60) {
-          if (gameCellRefs[targetCellRef].current.style.background === "red") {
-            return
-          } else {
-            for (let i=0; i < shipLength * 10; i+=10) {
-              gameCellRefs[targetCellRef + i].current.style.background = "blue";
-            }; 
-          };
-        } 
-      } else if (shipLength === 3) {
-        if (targetCellRef < 70) {
-          if (gameCellRefs[targetCellRef].current.style.background === "red") {
-            return
-          } else {
-            for (let i=0; i < shipLength * 10; i+=10) {
-              gameCellRefs[targetCellRef + i].current.style.background = "blue";
-            }; 
-          };
-        } 
-      } else {
-        if (targetCellRef < 80) {
-          if (gameCellRefs[targetCellRef].current.style.background === "red") {
-            return
-          } else {
-            for (let i=0; i < shipLength * 10; i+=10) {
-              gameCellRefs[targetCellRef + i].current.style.background = "blue";
-            }; 
-          };
-        } 
-      }
     }
-  }
 
   const mouseLeaveCell = (evt:any) => {
     const targetCellRef = parseInt(evt.target.className);
-    
     setEventColor('rgba(100, 100, 100, .6)');
-    if (axis === 'Horizontal') {
-      if (gameCellRefs[targetCellRef].current.style.background === "red") {
-        return
-      } else {
-        evt.target.style.background = eventHoverColor;
-        for (let i=0; i < shipLength; i++) {
-          gameCellRefs[targetCellRef + i ].current.style.background = eventHoverColor;
-        } 
-      }
+    if (gameCellRefs[targetCellRef].current.style.background === "red") {
+      return
     } else {
-      if (gameCellRefs[targetCellRef].current.style.background === "red") {
-        return
-      } else {
-        evt.target.style.background = eventHoverColor;
-        for (let i=0; i < shipLength * 10; i+=10) {
-          gameCellRefs[targetCellRef + i].current.style.background = eventHoverColor;
-        } 
-      }
+      evt.target.style.background = eventHoverColor;
+      for (let i=0; i < shipLength; i++) {
+        gameCellRefs[targetCellRef + i ].current.style.background = eventHoverColor;
+      } 
     }
   }
 
@@ -155,19 +71,15 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
     evt.target.style.pointerEvents = "none";
     const targetCellRef = parseInt(evt.target.className);
     readyPlayerOne.placeShip(axis, targetCellRef, shipLength);
-    setEventColor('red');
-    if (axis === "Horizontal") {
-      colorHorizontalShip(targetCellRef);
-    } else {
-      colorVerticalShip(targetCellRef);
-    }
+    colorInShipOnBoard(targetCellRef);
+    setEventColor('red'); //Place red ship
   }
-  function colorHorizontalShip(targetCellRef:number) {
+  function colorInShipOnBoard(targetCellRef:number) {
     if (shipLength === 4) {
       if (targetCellRef < 3) {
         topLeftPlacement();
       } else if (targetCellRef > 85) {
-        bottomPlacement();
+        bottomRightPlacement();
       }else if (targetCellRef % 10 === 6) {
         rightEdgePlacement()
       }else {
@@ -177,7 +89,7 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
       if (targetCellRef < 2) {
         topLeftPlacement();
       } else if (targetCellRef > 86) {
-        bottomPlacement();
+        bottomRightPlacement();
       }else if (targetCellRef % 10 === 7) {
         rightEdgePlacement()
       }else {
@@ -187,7 +99,7 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
       if (targetCellRef < 1) {
         topLeftPlacement();
       } else if (targetCellRef > 87) {
-        bottomPlacement();
+        bottomRightPlacement();
       }else if (targetCellRef % 10 === 8) {
         rightEdgePlacement()
       }else {
@@ -198,6 +110,8 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
       for (let i=0; i < shipLength; i++) {
         // Color i number squares to the right of click event
         gameCellRefs[targetCellRef + i ].current.style.background = "red";
+        //turn all squared off
+        gameCellRefs[targetCellRef + i ].current.style.pointerEvents = "none";
         // i+1 turns off one square to right the ship.
         gameCellRefs[targetCellRef + (i + 1)].current.style.pointerEvents = "none";
         // Turn off squares to left of boat equal to lenght of the boat. 
@@ -208,13 +122,12 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
       for (let i=0; i < shipLength; i++) {
         // Color i number squares to the right of click event
         gameCellRefs[targetCellRef + i ].current.style.background = "red";
+        gameCellRefs[targetCellRef + i ].current.style.pointerEvents = "none";
+        gameCellRefs[targetCellRef + (i + 1) ].current.style.background = "none";
         // i+1 turns off the square behind the ship. Prevent overlap. 
-        gameCellRefs[0].current.style.pointerEvents = "none";
-        gameCellRefs[1].current.style.pointerEvents = "none";
-        gameCellRefs[2].current.style.pointerEvents = "none";
       }
     }
-    function bottomPlacement() {
+    function bottomRightPlacement() {
       for (let i=0; i < shipLength; i++) {
         // Color i number squares to the right of click event
         gameCellRefs[targetCellRef + i ].current.style.background = "red"; 
@@ -232,69 +145,6 @@ const SetUpBoard: React.FC<SetUpBoardProps> = ({axis}) => {
     }
     reduceShipLength();
   }
-  function colorVerticalShip(targetCellRef:number) {
-    if (shipLength === 4) {
-      if (targetCellRef < 10) {
-        topPlacement();
-      } else if (targetCellRef > 50 ) {
-        bottomPlacement();
-      } else {
-        normalPlacement();
-      }
-    } else if (shipLength === 3) {
-      if (targetCellRef < 10) {
-        topPlacement();
-      } else if (targetCellRef > 60 ) {
-        bottomPlacement();
-      } else {
-        normalPlacement();
-      }
-    }else {
-      if (targetCellRef < 10) {
-        topPlacement();
-      } else if (targetCellRef > 70) {
-        bottomPlacement();
-      } else {
-        normalPlacement();
-      }
-    }
-    function normalPlacement() {
-      for (let i=0; i < shipLength * 10; i+=10) {
-        // Color i number squares to the right of click event
-        gameCellRefs[targetCellRef + i ].current.style.background = "red";
-        // Turn off cell under ship.
-        gameCellRefs[targetCellRef + (shipLength * 10 + 10)].current.style.pointerEvents = "none";
-        // Turn off square above boat. 
-        gameCellRefs[targetCellRef - (10) ].current.style.pointerEvents = "none";
-      }
-    }
-    function topPlacement() {
-      for (let i=0; i < shipLength * 10; i+=10) {
-        // Color i number squares to the right of click event
-        gameCellRefs[targetCellRef + i ].current.style.background = "red";
-        // Turn off cell under ship.
-        gameCellRefs[targetCellRef + (shipLength * 10 + 10)].current.style.pointerEvents = "none";
-      }
-    }
-    function bottomPlacement() {
-      for (let i=0; i < shipLength * 10; i+=10) {
-        // Color i number squares to the right of click event
-        gameCellRefs[targetCellRef + i ].current.style.background = "red"; 
-        // Turn off squares to left of boat equal to lenght of the boat. 
-        gameCellRefs[targetCellRef - (10) ].current.style.pointerEvents = "none";
-      }
-    }
-    function rightEdgePlacement() {
-      for (let i=0; i < shipLength; i++) {
-        // Color i number squares to the right of click event
-        gameCellRefs[targetCellRef + i ].current.style.background = "red";
-        // Turn off squares to left of boat equal to lenght of the boat. 
-        gameCellRefs[targetCellRef - i ].current.style.pointerEvents = "none";
-      }
-    }
-    reduceShipLength();
-  }
-
   let allThreeShipsPlaced = useRef(1);
   function reduceShipLength() {
     if (shipLength === 4) {
