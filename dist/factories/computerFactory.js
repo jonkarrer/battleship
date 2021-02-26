@@ -2,12 +2,37 @@ import GameBoard from "./gameBoardFactory.js";
 class Computer {
   constructor() {
     this.computerBoard = new GameBoard();
-    this.alreadyPlaced = [];
+    this.alreadyPlaced = [
+      17,
+      18,
+      19,
+      27,
+      28,
+      29,
+      37,
+      38,
+      39,
+      47,
+      48,
+      49,
+      57,
+      58,
+      59,
+      67,
+      68,
+      69,
+      77,
+      78,
+      79,
+      87,
+      88,
+      89
+    ];
   }
   initComputerPlayer() {
     this.computerBoard.buildGrid();
     const shipLengthHolder = [2, 3, 3, 3, 4];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i <= 5; i++) {
       let shipLength = shipLengthHolder.pop();
       let randomCoordinate = this.computerAttackMaker();
       this.placeShipHorizontal(randomCoordinate, shipLength);
@@ -39,13 +64,6 @@ class Computer {
       coordinatesArr.push(someRandomSelection + i);
     }
     this.computerBoard.placeHorizontalShip(whichBoatLength, coordinatesArr);
-  }
-  placeShipVertical(someRandomSelection, whichBoatLength) {
-    let coordinatesArr = [];
-    for (let i = 0; i < whichBoatLength * 10; i += 10) {
-      coordinatesArr.push(someRandomSelection + i);
-    }
-    this.computerBoard.placeVerticalShip(whichBoatLength, coordinatesArr);
   }
 }
 export default Computer;

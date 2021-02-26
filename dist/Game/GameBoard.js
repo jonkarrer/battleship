@@ -66,27 +66,34 @@ const ComputerBoard = () => {
   }
   function computerTurn() {
     const randomCoordinate = computerAttackMaker();
+    console.log(readyPlayerOne.humanBoard.shipYard);
+    console.log(readyPlayerOne.humanBoard.missedShotsTracker);
     if (readyPlayerOne.humanBoard.receiveAttack(randomCoordinate) === "hit") {
       playerCellRefs[randomCoordinate].current.style.background = "red";
       setTimeout(computerTurn, 1e3);
+      return countSunkPlayerShips();
     } else {
       playerCellRefs[randomCoordinate].current.style.background = "green";
       setTimeout(() => {
         compTurnOverlay.current.style.display = "none";
         playerTurnOverlay.current.style.display = "flex";
       }, 1e3);
+      return countSunkPlayerShips();
     }
     ;
-    countSunkPlayerShips();
   }
   function countSunkPlayerShips() {
-    let playerShipCount = readyPlayerOne.humanBoard.countSunkShips();
-    playerShipCount;
-    if (playerShipCount) {
+    let sunkShipTracker = [];
+    for (let ship of readyPlayerOne.humanBoard.shipYard) {
+      if (ship.hasSank) {
+        sunkShipTracker.push(1);
+      }
+      ;
+    }
+    if (sunkShipTracker.length === 5) {
       winner();
       endGame();
     }
-    ;
   }
   const playerBoardCells = [];
   for (let i = 0; i < 90; i++) {
