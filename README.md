@@ -1,6 +1,10 @@
 # BattleShip Game
 
-## Summary
+## Live preview
+
+<https://github.com/jonkarrer/battleship#readme>
+
+## Description
 
 I am aware that React + Typescript is overkill for this project. I am using them to practice for large projects. This web-app is created to improve my Testing skills in Jest. This READ.MD will be used to describe the process, and some of the unique lessons I learned. Along with Jest, I want to improve my skills with React, Typescript, and Snowpack. I have never used Jest with React, so this may be a dense project.
 
