@@ -40,12 +40,16 @@ const ComputerBoard = () => {
     countSunkComputerShips();
   };
   function countSunkComputerShips() {
-    let computerShipCount = computerPlayer.computerBoard.countSunkShips();
-    computerShipCount;
-    if (computerShipCount === true) {
+    let sunkShipTracker = [];
+    for (let ship of computerPlayer.computerBoard.shipYard) {
+      if (ship.hasSank) {
+        sunkShipTracker.push(1);
+      }
+      ;
+    }
+    if (sunkShipTracker.length === 5) {
       endGame();
     }
-    ;
   }
   function computerAttackMaker() {
     let randomCoord = Math.floor(Math.random() * 89);
