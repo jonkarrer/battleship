@@ -42,11 +42,15 @@ const ComputerBoard: React.FC = () => {
     countSunkComputerShips();
   }
   function countSunkComputerShips() {
-    let computerShipCount:any = computerPlayer.computerBoard.countSunkShips();
-    computerShipCount;
-    if (computerShipCount === true) {
+    let sunkShipTracker:Array<number> = [];
+    for (let ship of computerPlayer.computerBoard.shipYard) {
+      if (ship.hasSank) {
+        sunkShipTracker.push(1);
+      };
+    }
+    if (sunkShipTracker.length === 5) {
       endGame();
-    };
+    }
   }
 
   function computerAttackMaker() {
