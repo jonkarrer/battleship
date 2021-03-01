@@ -13,7 +13,7 @@ I am aware that React + Typescript is overkill for this project. I am using them
 1. install snowpack with typescript template
 
     ```bash
-    npx create-snowpack-app react-snowpack --template @snowpack/app-template-react-typescript
+    npx create-snowpack-app battleship --template @snowpack/app-template-react-typescript
     ```
 
 ### Install git-hub, gh-pages, webpack
